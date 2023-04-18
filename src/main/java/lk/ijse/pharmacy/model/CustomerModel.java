@@ -50,4 +50,22 @@ public class CustomerModel {
                 sql,
                 id);
     }
+
+    public static Customer findById(String id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM customer WHERE custID=?";
+
+        ResultSet resultSet = CrudUtil.crudUtil(sql,id);
+        if(resultSet.next()){
+            return (new Customer(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6),
+                    resultSet.getString(7)
+            ));
+        }
+        return null;
+    }
 }

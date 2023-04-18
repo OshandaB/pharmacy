@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import lk.ijse.pharmacy.dto.Customer;
@@ -197,6 +198,36 @@ public class CustomerFormController {
 
 
     public void searchOnAction(ActionEvent actionEvent) {
+        String id = txtSearch.getText();
+
+        txtId.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtStreet.setText("");
+        txtCity.setText("");
+        txtLane.setText("");
+        txtContact.setText("");
+
+        try {
+            Customer customer = CustomerModel.findById(id);
+            if (customer != null) {
+                txtId.setText(customer.getCustID());
+                txtId.setDisable(true);
+                txtFirstName.setText(customer.getFirstName());
+                txtLastName.setText(customer.getLastName());
+                txtStreet.setText(customer.getStreet());
+                txtCity.setText(customer.getCity());
+                txtLane.setText(customer.getLane());
+                txtContact.setText(customer.getContact());
+
+                txtSearch.setText("");
+            } else {
+                AlertController.errormessage("Event ID Not Found");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            AlertController.errormessage("Something Went Wrong");
+        }
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) throws ClassNotFoundException {
@@ -223,5 +254,8 @@ public class CustomerFormController {
                 AlertController.errormessage("something went wrong!");
             }
         }
+    }
+
+    public void imgSearchOnMouseClicked(MouseEvent mouseEvent) {
     }
 }
