@@ -202,12 +202,12 @@ public class EmployeeFormController {
     }
 
     private void clearTxtField() {
-//        txtEmployeeId.setText("");
-//        txtFirstName.setText("");
-//        txtLastName.setText("");
-//        txtStreet.setText("");
-//        txtCity.setText("");
-//        txtLane.setText("");
-//        txtContact.setText("");
+        txtEmployeeId.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtStreet.setText("");
+        txtCity.setText("");
+        txtLane.setText("");
+        txtContact.setText("");
     }
 }
