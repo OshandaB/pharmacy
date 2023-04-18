@@ -30,7 +30,7 @@ public class DashboardFormController {
     }
 
     public void btnItemOnAction(ActionEvent actionEvent) {
-        Navigation.onTheTopNavigation(pane, "item.fxml");
+        Navigation.onTheTopNavigation(pane, "Item.fxml");
     }
 
     public void btnBillFormOnAction(ActionEvent actionEvent) {
