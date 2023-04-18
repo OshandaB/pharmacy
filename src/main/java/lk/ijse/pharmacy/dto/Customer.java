@@ -16,6 +16,4 @@ public class Customer {
     private String city;
     private String lane;
     private String contact;
-
-
 }

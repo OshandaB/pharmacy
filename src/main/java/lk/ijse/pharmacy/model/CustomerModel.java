@@ -1,5 +1,7 @@
 package lk.ijse.pharmacy.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lk.ijse.pharmacy.dto.Customer;
 import lk.ijse.pharmacy.tm.CustomerTm;
 import lk.ijse.pharmacy.util.CrudUtil;
@@ -67,5 +69,25 @@ public class CustomerModel {
             ));
         }
         return null;
+    }
+
+    public static ObservableList<CustomerTm> getAll() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM customer";
+
+        ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
+
+        ResultSet resultSet = CrudUtil.crudUtil(sql);
+        while (resultSet.next()) {
+            obList.add(new CustomerTm(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6),
+                    resultSet.getString(7)
+            ));
+        }
+        return obList;
     }
 }

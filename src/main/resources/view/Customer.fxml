@@ -32,7 +32,7 @@
             <Image url="@../img/man2icon.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblCustomer" layoutX="75.0" layoutY="400.0" prefHeight="306.0" prefWidth="1009.0">
+      <TableView fx:id="tblCustomer" layoutX="75.0" layoutY="400.0" onMouseClicked="#tblCustomerOnMouseClicked" prefHeight="306.0" prefWidth="1009.0">
         <columns>
           <TableColumn fx:id="colCusId" prefWidth="144.0" text="CustId" />
           <TableColumn fx:id="colFName" prefWidth="144.0" text="FirstName" />
@@ -54,7 +54,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtSearch" layoutX="885.0" layoutY="61.0" onAction="#searchOnAction" promptText="Search by ID" />
+      <TextField fx:id="txtSearch" layoutX="885.0" layoutY="61.0" onAction="#searchOnAction" onKeyTyped="#txtSearchKeyTyped" promptText="Search by ID" />
       <ImageView fx:id="imgSearch" fitHeight="32.0" fitWidth="31.0" layoutX="1053.0" layoutY="58.0" onMouseClicked="#imgSearchOnMouseClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/searchbarIcon.png" />
@@ -65,7 +65,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtId" layoutX="105.0" layoutY="139.0" prefHeight="25.0" prefWidth="218.0" />
+      <TextField fx:id="txtId" layoutX="105.0" layoutY="139.0" onMouseClicked="#txtIdOnMouseClicked" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="445.0" layoutY="117.0" prefHeight="17.0" prefWidth="86.0" text="First Name:" />
       <TextField fx:id="txtFirstName" layoutX="445.0" layoutY="136.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="785.0" layoutY="117.0" prefHeight="17.0" prefWidth="86.0" text="Last Name:" />
@@ -77,6 +77,8 @@
       <Label layoutX="785.0" layoutY="188.0" prefHeight="17.0" prefWidth="86.0" text="Lane" />
       <TextField fx:id="txtLane" layoutX="785.0" layoutY="207.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="105.0" layoutY="264.0" prefHeight="17.0" prefWidth="114.0" text="Contact Number:" />
-      <TextField fx:id="txtContact" layoutX="105.0" layoutY="283.0" prefHeight="25.0" prefWidth="218.0" />
+      <TextField fx:id="txtContact" layoutX="105.0" layoutY="283.0" onMouseClicked="#txtContactOnMouseClicked" prefHeight="25.0" prefWidth="218.0" />
+      <Label fx:id="lblinvalidcustid" layoutX="105.0" layoutY="164.0" prefHeight="17.0" prefWidth="304.0" text="Wrong Customer ID Format. (Valid Format - &quot;cust-000&quot;)" textFill="RED" />
+      <Label fx:id="lblinvalidcontact" layoutX="105.0" layoutY="308.0" text="Invalid Contact( Start with 0 )" textFill="RED" />
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package lk.ijse.pharmacy.util;
 
+import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import javafx.scene.control.Control;
@@ -35,12 +36,23 @@ public class ValidateField {
 //        Matcher matcher = pattern.matcher(contact);
 //        return matcher.matches();
 
+//        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+//        Phonenumber.PhoneNumber phoneNumber = null;
+//        try {
+//            phoneNumber = phoneUtil.parse(contact, String.valueOf(LK));
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        boolean isValid = phoneUtil.isValidNumber(phoneNumber);
+//        return isValid;
+
         PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
         Phonenumber.PhoneNumber phoneNumber = null;
         try {
             phoneNumber = phoneUtil.parse(contact, String.valueOf(LK));
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (NumberParseException e) {
+            // The input is not a valid phone number
+            return false;
         }
         boolean isValid = phoneUtil.isValidNumber(phoneNumber);
         return isValid;
