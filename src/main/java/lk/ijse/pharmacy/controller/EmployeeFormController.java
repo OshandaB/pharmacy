@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,11 +14,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.pharmacy.dto.Customer;
 import lk.ijse.pharmacy.dto.Employee;
 import lk.ijse.pharmacy.model.CustomerModel;
 import lk.ijse.pharmacy.model.EmployeeModel;
+import lk.ijse.pharmacy.tm.CustomerTm;
 import lk.ijse.pharmacy.tm.EmployeeTm;
 import lk.ijse.pharmacy.util.AlertController;
 import lk.ijse.pharmacy.util.ValidateField;
@@ -300,6 +303,23 @@ public class EmployeeFormController {
         }
     }
 
+    public void txtSearchKeyTyped(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        String searchValue = txtSearchId.getText().trim();
+        ObservableList<EmployeeTm> obList = EmployeeModel.getAll();
+
+        if (!searchValue.isEmpty()) {
+            ObservableList<EmployeeTm> filteredData = obList.filtered(new Predicate<EmployeeTm>() {
+                @Override
+                public boolean test(EmployeeTm eventtm) {
+                    return eventtm.getEmpId().toLowerCase().contains(searchValue.toLowerCase());
+                }
+            });
+            tblEmployee.setItems(filteredData);
+        } else {
+            tblEmployee.setItems(obList);
+        }
+    }
+
     @FXML
     void txtContactOnMouseClicked(MouseEvent event) {
         lblinvalidcontact.setVisible(false);
@@ -333,27 +353,13 @@ public class EmployeeFormController {
     }
 
     private void getAll() {
-        ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
-        try{
-            List<Employee> allData = EmployeeModel.getAll();
-
-            for(Employee employee : allData){
-                obList.add(new EmployeeTm(
-                        employee.getEmpId(),
-                        employee.getFirstName(),
-                        employee.getLastName(),
-                        employee.getStreet(),
-                        employee.getCity(),
-                        employee.getLane(),
-                        employee.getContact()
-                ));
-            }
-            tblEmployee.setItems(obList);
-        } catch (SQLException throwables) {
+        ObservableList<EmployeeTm> obList = null;
+        try {
+            obList = EmployeeModel.getAll();
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
+        tblEmployee.setItems(obList);
     }
 
     private void clearTxtField() {

@@ -38,7 +38,7 @@
             <TableColumn fx:id="colContact" prefWidth="158.0" text="Contact" />
          </columns>
       </TableView>
-      <TextField fx:id="txtSearchId" layoutX="856.0" layoutY="67.0" onAction="#txtSearchIdOnAction" promptText="Search Id" />
+      <TextField fx:id="txtSearchId" layoutX="856.0" layoutY="67.0" onAction="#txtSearchIdOnAction" onKeyTyped="#txtSearchKeyTyped" promptText="Search Id" />
       <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="1036.0" layoutY="66.0" onMouseClicked="#imgSearchIconOnMouseClickedAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/searchbarIcon.png" />
