@@ -6,10 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.pharmacy.dto.Supplier;
 import lk.ijse.pharmacy.model.SupplierModel;
 import lk.ijse.pharmacy.tm.SupplierTm;
@@ -76,6 +78,9 @@ public class SupplierFormController implements Initializable {
 
     @FXML
     private TextField txtSearch;
+
+    @FXML
+    private TableView<SupplierTm> tblSupplier;
 
     @FXML
     private TextField txtStreet;
@@ -183,7 +188,6 @@ public class SupplierFormController implements Initializable {
             Supplier supplier = SupplierModel.findById(id);
             if (supplier != null) {
                 txtId.setText(supplier.getSupID());
-                txtId.setDisable(true);
                 txtFirstName.setText(supplier.getFirstName());
                 txtLastName.setText(supplier.getLastName());
                 txtStreet.setText(supplier.getStreet());
@@ -193,7 +197,7 @@ public class SupplierFormController implements Initializable {
 
                 txtSearch.setText("");
             } else {
-                AlertController.errormessage("Event ID Not Found");
+                AlertController.errormessage("Supplier ID Not Found");
             }
         } catch (SQLException throwables) {
 
@@ -230,5 +234,32 @@ public class SupplierFormController implements Initializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void tblCustomerOnMouseClicked(MouseEvent mouseEvent) {
+        TablePosition pos = tblSupplier.getSelectionModel().getSelectedCells().get(0);
+        int row = pos.getRow();
+        // Get the data from the selected row
+        ObservableList <TableColumn<SupplierTm, ?>> columns = tblSupplier.getColumns();
+
+        txtId.setText(columns.get(0).getCellData(row).toString());
+        txtFirstName.setText(columns.get(1).getCellData(row).toString());
+        txtLastName.setText(columns.get(2).getCellData(row).toString());
+        txtStreet.setText(columns.get(3).getCellData(row).toString());
+        txtCity.setText(columns.get(4).getCellData(row).toString());
+        txtLane.setText(columns.get(5).getCellData(row).toString());
+        txtContact.setText(columns.get(6).getCellData(row).toString());
+
+        txtSearch.setText("");
+    }
+
+    public void imgSearchOnAction(MouseEvent mouseEvent) {
+
+    }
+
+    public void imgSearchOnMouseClicked(MouseEvent mouseEvent) {
+        txtSearch.requestFocus();
+        txtSearch.selectAll();
+        txtSearch.fireEvent(new ActionEvent());
     }
 }
