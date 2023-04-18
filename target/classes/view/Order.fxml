@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1184.0" stylesheets="@../Style/customerForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.OrderFormController">
+   <children>
+      <ImageView fitHeight="790.0" fitWidth="1184.0" layoutX="-6.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/background16.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="114.0" layoutY="28.0" prefHeight="94.0" prefWidth="234.0" text="ORDER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="896.0" layoutY="705.0" prefHeight="35.0" prefWidth="218.0" text="United Pharmacy">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="63.0" layoutY="122.0" prefHeight="260.0" prefWidth="996.0">
+         <children>
+            <JFXButton layoutX="761.0" layoutY="204.0" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #58AF50;" styleClass="button-add" text="ADD">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="861.0" layoutY="204.0" styleClass="button-update" text="UPDATE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <TextField layoutX="753.0" layoutY="45.0" promptText="Search Id" />
+            <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="940.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/searchbarIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutY="57.0" prefHeight="37.0" prefWidth="262.0" style="-fx-border-color: #000000; -fx-border-radius: 120 120 120 120;" styleClass="labelTotal" stylesheets="@../Style/DashboardForm.css" text="   Total  Orders                  32">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="849.0" layoutY="65.0" prefHeight="35.0" prefWidth="210.0" text="         2023.03.02">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="83.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/cart2icon.png" />
+         </image>
+      </ImageView>
+      <TableView layoutX="69.0" layoutY="392.0" prefHeight="306.0" prefWidth="971.0">
+         <columns>
+            <TableColumn prefWidth="160.0" text="OrderId" />
+            <TableColumn prefWidth="160.0" text="CustId" />
+            <TableColumn prefWidth="169.0" text="EmpId" />
+            <TableColumn prefWidth="160.0" text="Date" />
+            <TableColumn prefWidth="160.0" text="Delete" />
+            <TableColumn prefWidth="160.0" text="View" />
+         </columns>
+      </TableView>
+      <JFXButton layoutX="63.0" layoutY="707.0" text="OrderDetail">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
