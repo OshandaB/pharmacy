@@ -21,28 +21,33 @@ public class CustomerModel {
         );
     }
 
-    public static ArrayList<String> getAllId() throws SQLException, ClassNotFoundException {
-        ArrayList<String>list=new ArrayList<>();
-        ResultSet set= CrudUtil.crudUtil("SELECT  custID From Customer ORDER BY LENGTH(custID),custID");
-        while (set.next()){
-            list.add(set.getString(1));
-        }
-        return list;
+    public static boolean update(Customer customer) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE customer SET firstName=?,lastName=?,street=?,city=?,lane=?,contact=? WHERE custID=?";
+//        try (PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql)) {
+//
+//            pstm.setString(1, customer.getName());
+//            pstm.setString(2, customer.getEmail());
+//            pstm.setString(3, customer.getContact());
+//            pstm.setString(4, customer.getId());
+//
+//            return pstm.executeUpdate() > 0;
+//        }
+        return CrudUtil.crudUtil(
+                sql,
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getStreet(),
+                customer.getCity(),
+                customer.getLane(),
+                customer.getCity(),
+                customer.getCustID()
+        );
     }
 
-    public static ArrayList<CustomerTm> getAllICustomer() throws SQLException, ClassNotFoundException {
-        ArrayList<CustomerTm>list=new ArrayList<>();
-        ResultSet rst= CrudUtil.crudUtil("SELECT  * From Customer;");
-        while (rst.next()){
-            list.add(
-                    new CustomerTm(
-                            rst.getString(1),
-                            rst.getString(2),
-                            rst.getString(3),
-                            rst.getString(4),
-                            rst.getString(5)
-                    ));
-        }
-        return list;
+    public static boolean delete(String id) throws SQLException, ClassNotFoundException {
+        String sql = "DELETE FROM customer WHERE custID=?";
+        return CrudUtil.crudUtil(
+                sql,
+                id);
     }
 }
