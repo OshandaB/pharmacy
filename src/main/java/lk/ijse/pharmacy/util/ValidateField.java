@@ -125,7 +125,7 @@ public class ValidateField {
     }
 
     public static boolean employeeIdCheck(String custId) {
-        String pattern = "^emp\\d+$";
+        String pattern = "^emp-\\d+$";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(custId);
         return m.matches();
