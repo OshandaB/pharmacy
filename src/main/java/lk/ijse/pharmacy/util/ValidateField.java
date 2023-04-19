@@ -152,10 +152,14 @@ public class ValidateField {
     }
 
     public static boolean numberCheck(String input) {
-        if (input.matches("\\d+")) {
-            return true; // Input contains only numeric characters
-        } else {
-            return false; // Input contains non-numeric characters
+        try {
+            if (input.matches("\\d+")) {
+                return true; // Input contains only numeric characters
+            } else {
+                return false; // Input contains non-numeric characters
+            }
+        }catch(Exception e){
+            return false;
         }
     }
 

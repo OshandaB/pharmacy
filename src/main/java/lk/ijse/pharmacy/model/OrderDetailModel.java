@@ -1,14 +1,38 @@
 package lk.ijse.pharmacy.model;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import lk.ijse.pharmacy.dto.PlaceOrder;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class OrderDetailModel {
+
+    public static boolean save(String orderid, List<PlaceOrder> placeOrderList) throws SQLException, ClassNotFoundException {
+        for(PlaceOrder placeOrder : placeOrderList) {
+            if(!save(orderid, placeOrder)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean save(String orderid, PlaceOrder placeOrder) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO orderdetail(medID,orderID,qty)" +
+                "VALUES(?, ?, ?)";
+
+        return CrudUtil.crudUtil(
+                sql,
+                placeOrder.getOrdereditemcode(),
+                orderid,
+                placeOrder.getOrdereditemqty()
+        );
+    }
 
     public static ObservableList<PieChart.Data> getDataToPieChart() throws SQLException, ClassNotFoundException {
         String sql="SELECT medicine.medName,COUNT(orderdetail.medID) FROM orderDetail INNER JOIN medicine ON medicine.medID = orderdetail.medID INNER JOIN orders\n" +
@@ -25,5 +49,6 @@ public class OrderDetailModel {
             );
         }
         return datalist;
+
     }
 }

@@ -88,6 +88,18 @@ public class EmployeeModel {
         return null;
     }
 
+
+    public static List<String> loadIds() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT empID FROM employee";
+        ResultSet resultSet = CrudUtil.crudUtil(sql);
+
+        List<String> data = new ArrayList<>();
+
+        while (resultSet.next()) {
+            data.add(resultSet.getString(1));
+        }
+        return data;
+    }
     public static int getTotEmployee() throws SQLException, ClassNotFoundException {
         String sql="SELECT COUNT(empID) FROM Employee";
         ResultSet resultSet= CrudUtil.crudUtil(sql);
@@ -96,5 +108,6 @@ public class EmployeeModel {
             count=resultSet.getInt(1);
         }
         return count;
+
     }
 }

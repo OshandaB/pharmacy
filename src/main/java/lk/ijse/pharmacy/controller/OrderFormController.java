@@ -1,19 +1,31 @@
 package lk.ijse.pharmacy.controller;
 
 import com.jfoenix.controls.JFXButton;
+
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.*;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.pharmacy.dto.Item;
+import lk.ijse.pharmacy.dto.PlaceOrder;
+import lk.ijse.pharmacy.model.CustomerModel;
+import lk.ijse.pharmacy.model.EmployeeModel;
+import lk.ijse.pharmacy.model.ItemModel;
+import lk.ijse.pharmacy.model.OrderModel;
+import lk.ijse.pharmacy.tm.PlaceOrderTM;
+import lk.ijse.pharmacy.util.AlertController;
+import lk.ijse.pharmacy.util.ValidateField;
 
 public class OrderFormController {
 
@@ -36,10 +48,10 @@ public class OrderFormController {
     private JFXButton btnPlaceOrder;
 
     @FXML
-    private ComboBox<?> cmbcustid;
+    private ComboBox<String> cmbcustid;
 
     @FXML
-    private ComboBox<?> cmbitemcode;
+    private ComboBox<String> cmbitemcode;
 
     @FXML
     private TableColumn<?, ?> colaction;
@@ -114,10 +126,118 @@ public class OrderFormController {
     private ImageView seeorderdet;
 
     @FXML
-    private TableView<?> tblplaceOrder;
+    private TableView<PlaceOrderTM> tblplaceOrder;
 
     @FXML
     private TextField txtpaidamount;
+
+    @FXML
+    private Label txtmoremoney;
+
+    @FXML
+    private ComboBox<String> cmbEmpID;
+
+    private void generateNextOrderId() {
+        try {
+            String id = OrderModel.getNextOrderId();
+            lblorderid.setText(id);
+        } catch (Exception e) {
+            System.out.println(e);
+            new Alert(Alert.AlertType.ERROR, "Exception!").show();
+        }
+    }
+
+    private void loadEmployeeIDs() throws ClassNotFoundException {
+        try {
+            ObservableList<String> obList = FXCollections.observableArrayList();
+            List<String> codes = EmployeeModel.loadIds();
+
+            for (String code : codes) {
+                obList.add(code);
+            }
+            cmbEmpID.setItems(obList);
+        } catch (SQLException e) {
+            System.out.println(e);
+            new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
+        }
+
+    }
+
+    private void loadItemCodes() throws ClassNotFoundException {
+        try {
+            ObservableList<String> obList = FXCollections.observableArrayList();
+            List<String> codes = ItemModel.loadCodes();
+
+            for (String code : codes) {
+                obList.add(code);
+            }
+            cmbitemcode.setItems(obList);
+        } catch (SQLException e) {
+            System.out.println(e);
+            new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
+        }
+
+    }
+
+    Item item;
+    @FXML
+    void cmbitemcodeOnAction(ActionEvent event) {
+        String itemcode = cmbitemcode.getValue();
+
+        try {
+            item = ItemModel.findById(itemcode);
+            lblchangingitmname.setText(item.getItemMedName());
+            lblchangingunitprice.setText(String.valueOf(item.getItemUnitPrice()));
+            lblchangingcategory.setText(item.getItemType());
+
+            if (Integer.parseInt(item.getItemQOH()) > 0) {
+                lblchangingqtyonhands.setText(String.valueOf(item.getItemQOH()));
+            } else {
+                lblchangingqtyonhands.setText("Out Of Stock");
+                AlertController.errormessage("item " + item.getItemMedName() + " out of stock");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void loadCustomerIds() throws ClassNotFoundException {
+        try {
+            ObservableList<String> obList = FXCollections.observableArrayList();
+            List<String> ids = CustomerModel.loadIds();
+
+            for (String id : ids) {
+                obList.add(id);
+            }
+            cmbcustid.setItems(obList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
+        }
+    }
+
+    @FXML
+    void cmbcustidOnAction(ActionEvent event) {
+        String cust_id = cmbcustid.getValue();
+
+        try {
+            String name = CustomerModel.getCustName(cust_id);
+            lblchangingcusname.setText(name);
+        } catch (Exception e) {
+            System.out.println(e);
+            new Alert(Alert.AlertType.ERROR, "Exception!").show();
+        }
+    }
+
+    private void setCellValueFactory() {
+        colitemcode.setCellValueFactory(new PropertyValueFactory<>("itemcode"));
+        colitemname.setCellValueFactory(new PropertyValueFactory<>("itemname"));
+        colunitprice.setCellValueFactory(new PropertyValueFactory<>("unitprice"));
+        colcategory.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colquantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colquantity_unitprice.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colaction.setCellValueFactory(new PropertyValueFactory<>("removebtn"));
+    }
 
     @FXML
     void addiconOnMouseClicked(MouseEvent event) {
@@ -129,24 +249,159 @@ public class OrderFormController {
 
     }
 
+    private ObservableList<PlaceOrderTM> obList = FXCollections.observableArrayList();
     @FXML
     void btnaddcartOnAction(ActionEvent event) {
+        String itemcode = cmbitemcode.getValue();
+        String itemname = lblchangingitmname.getText();
+        String unitprice = lblchangingunitprice.getText();
+        String type = lblchangingcategory.getText();
+        Integer quantity = 0;
+        try {
+            quantity = Integer.valueOf(orderqty.getText());
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        Double total = Double.parseDouble(lblchangingunitprice.getText()) * quantity;
+        Button btnremove = new Button("Remove");
+        btnremove.setCursor(Cursor.HAND);
 
+        if (ValidateField.numberCheck(orderqty.getText())) {
+            if (quantity > Integer.parseInt(lblchangingqtyonhands.getText())) {
+                AlertController.errormessage("Item " + itemname + " out of stock or not enough stock");
+            } else {
+                setRemoveBtnOnAction(btnremove); /* set action to the btnRemove */
+
+                if (!obList.isEmpty()) {
+                    int newval= Integer.parseInt(lblchangingqtyonhands.getText())-Integer.parseInt(orderqty.getText());
+                    lblchangingqtyonhands.setText(String.valueOf(newval));
+                    for (int i = 0; i < tblplaceOrder.getItems().size(); i++) {
+                        if (colitemcode.getCellData(i).equals(itemcode)) {
+                            quantity += (int) colquantity.getCellData(i);
+                            total = quantity * Double.parseDouble(unitprice);
+
+                            obList.get(i).setQuantity(quantity);
+                            obList.get(i).setTotal(total);
+
+                            tblplaceOrder.refresh();
+                            calculateNetTotal();
+                            return;
+                        }
+                    }
+                }else{
+                    int newval= Integer.parseInt(lblchangingqtyonhands.getText())-Integer.parseInt(orderqty.getText());
+                    lblchangingqtyonhands.setText(String.valueOf(newval));
+                }
+
+                PlaceOrderTM tm = new PlaceOrderTM(itemcode, itemname, Double.parseDouble(unitprice), type, quantity, total, btnremove);
+
+                obList.add(tm);
+                tblplaceOrder.setItems(obList);
+                calculateNetTotal();
+                orderqty.setText("");
+            }
+        } else {
+            AlertController.errormessage("Wrong input format for item quantity field");
+        }
+    }
+
+    private void setRemoveBtnOnAction(Button btn) {
+        btn.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+            if (result.orElse(no) == yes) {
+                int index = tblplaceOrder.getSelectionModel().getSelectedIndex();
+                obList.remove(index);
+
+                tblplaceOrder.refresh();
+                calculateNetTotal();
+            }
+
+        });
+    }
+
+    private void calculateNetTotal() {
+        double netTotal = 0.0;
+        for (int i = 0; i < tblplaceOrder.getItems().size(); i++) {
+            double total = (double) colquantity_unitprice.getCellData(i);
+            netTotal += total;
+        }
+        lbltotalpay.setText(String.valueOf(netTotal));
     }
 
     @FXML
     void btnplaceorderOnAction(ActionEvent event) {
+        String orderid = lblorderid.getText();
+        String custid = cmbcustid.getValue();
+        String ordpay = lbltotalpay.getText();
+        String empid = cmbEmpID.getValue();
 
-    }
+        List<PlaceOrder> placeOrderList = new ArrayList<>();
 
-    @FXML
-    void cmbcustidOnAction(ActionEvent event) {
+        for (int i = 0; i < tblplaceOrder.getItems().size(); i++) {
+            PlaceOrderTM placeOrderTM = obList.get(i);
 
-    }
+            PlaceOrder placeOrder = new PlaceOrder(
+                    placeOrderTM.getItemcode(),
+                    placeOrderTM.getQuantity()
+            );
+            placeOrderList.add(placeOrder);
+        }
 
-    @FXML
-    void cmbitemcodeOnAction(ActionEvent event) {
+        boolean isPlaced = false;
+        if (ValidateField.priceCheck(ordpay)) {
+            try {
+                isPlaced = OrderModel.placeOrder(orderid, custid, ordpay,empid, placeOrderList);
+                if (isPlaced) {
+                    AlertController.confirmmessage("Order Placed");
+                    String printcash = txtpaidamount.getText();
+                    String balance = balancelbl.getText();
+                    generateNextOrderId();
+                    cmbcustid.setValue(null);
+                    cmbitemcode.setValue(null);
+                    lblchangingcusname.setText("");
+                    lblchangingitmname.setText("");
+                    lblchangingunitprice.setText("");
+                    lblchangingcategory.setText("");
+                    lblchangingqtyonhands.setText("");
+                    lbltotalpay.setText("0/=");
+                    radiodelivery.setSelected(false);
+                    tblplaceOrder.getItems().clear();
+                    txtpaidamount.setText("");
+                    balancelbl.setText("");
+                    lblmoreneeded.setVisible(false);
+                    txtmoremoney.setText("");
 
+                    btnPlaceOrder.setDisable(true);
+
+//                    boolean result = AlertController.okconfirmmessage("Do you want the bill ?");
+//
+//                    if (result) {
+//                        Map<String, Object> parameters = new HashMap<>();
+//                        parameters.put("param1", printcash);
+//                        parameters.put("param2", balance);
+//
+//                        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/placeorder.jrxml");
+//                        try {
+//                            JasperReport jasperReport = JasperCompileManager.compileReport(resource);
+//                            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DBConnection.getInstance().getConnection());
+//                            JasperViewer.viewReport(jasperPrint, false);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+                } else {
+                    AlertController.errormessage("Order Not Placed");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
+            AlertController.errormessage("Wrong input for paid amount field");
+        }
     }
 
     @FXML
@@ -166,11 +421,31 @@ public class OrderFormController {
 
     @FXML
     void txtpaidamountKeyTyped(KeyEvent event) {
-
+        if (!txtpaidamount.getText().isEmpty()) {
+            if (ValidateField.priceCheck(txtpaidamount.getText())) {
+                double balance = Double.parseDouble(txtpaidamount.getText()) - Double.parseDouble(lbltotalpay.getText());
+                if (balance >= 0) {
+                    txtpaidamount.setStyle("-fx-text-fill: black");
+                    balancelbl.setText(String.valueOf(balance));
+                    lblmoreneeded.setVisible(false);
+                    txtmoremoney.setText("");
+                    btnPlaceOrder.setDisable(false);
+                } else if (balance < 0) {
+                    txtpaidamount.setStyle("-fx-text-fill: black");
+                    btnPlaceOrder.setDisable(true);
+                    double positbalance = Math.abs(balance);
+                    lblmoreneeded.setVisible(true);
+                    txtmoremoney.setText(positbalance + "/=");
+                }
+            } else {
+                btnPlaceOrder.setDisable(true);
+                txtpaidamount.setStyle("-fx-text-fill: red");
+            }
+        }
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws ClassNotFoundException {
         assert addicon != null : "fx:id=\"addicon\" was not injected: check your FXML file 'Order.fxml'.";
         assert balancelbl != null : "fx:id=\"balancelbl\" was not injected: check your FXML file 'Order.fxml'.";
         assert btnAddCart != null : "fx:id=\"btnAddCart\" was not injected: check your FXML file 'Order.fxml'.";
@@ -204,6 +479,18 @@ public class OrderFormController {
         assert tblplaceOrder != null : "fx:id=\"tblplaceOrder\" was not injected: check your FXML file 'Order.fxml'.";
         assert txtpaidamount != null : "fx:id=\"txtpaidamount\" was not injected: check your FXML file 'Order.fxml'.";
 
+        loadCustomerIds();
+        loadItemCodes();
+        loadEmployeeIDs();
+        generateNextOrderId();
+        setCellValueFactory();
+
+        lblorderdate.setText(String.valueOf(LocalDate.now()));
+
+        lblmoreneeded.setVisible(false);
+        btnPlaceOrder.setDisable(true);
     }
 
+    public void cmbEmpIDOnAction(ActionEvent actionEvent) {
+    }
 }
