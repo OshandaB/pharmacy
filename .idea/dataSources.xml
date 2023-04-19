@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="2d92217b-4016-45f4-a137-6f8193ece8b3">
-=======
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="MySQL" uuid="f6068cd1-f020-4ec9-8380-cf06c8864989">
+    <data-source source="LOCAL" name="MySQL" uuid="1dc24106-af7e-47e7-8396-ba73c014c507">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/ pharmacy</jdbc-url>
-=======
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="76a1227a-f2c8-42c5-b89b-c95d104d424b">
-=======
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="313fe9a3-cf52-4d9d-9e97-58d109edb5ea">
->>>>>>> bd629ea7721dffe418254407ca7326410327079d
->>>>>>> dd5dc4b03bd61f9893f0c7fd864a45b729e621e7
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/pharmacy</jdbc-url>
->>>>>>> ec4538a047970007473af4b15dd97e88aa612fe0
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
