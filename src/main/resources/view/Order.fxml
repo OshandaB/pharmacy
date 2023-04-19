@@ -42,7 +42,7 @@
             <TableColumn fx:id="colitemcode" prefWidth="95.33334350585938" text="Item Code" />
             <TableColumn fx:id="colitemname" prefWidth="250.66665649414062" text="Item Name" />
             <TableColumn fx:id="colunitprice" prefWidth="112.0" text="Unit Price" />
-            <TableColumn fx:id="colcategory" prefWidth="142.00006103515625" text="Category" />
+            <TableColumn fx:id="colcategory" prefWidth="142.00006103515625" text="Type" />
             <TableColumn fx:id="colquantity" prefWidth="103.33343505859375" text="Quantity" />
             <TableColumn fx:id="colquantity_unitprice" prefWidth="137.3333740234375" text="Quantity × Unit Price" />
             <TableColumn fx:id="colaction" prefWidth="106.66670735677087" text="Action" />
@@ -86,7 +86,7 @@
       </Label>
       <Label fx:id="lblitemname" layoutX="179.0" layoutY="255.0" prefHeight="17.0" prefWidth="86.0" text="Item Name:" textFill="WHITE" />
       <Label fx:id="lblitmunitprice" layoutX="179.0" layoutY="273.0" prefHeight="17.0" prefWidth="86.0" text="Unit Price:" textFill="WHITE" />
-      <Label fx:id="lblitemcategory" layoutX="179.0" layoutY="289.0" prefHeight="17.0" prefWidth="86.0" text="Category:" textFill="WHITE" />
+      <Label fx:id="lblitemcategory" layoutX="179.0" layoutY="289.0" prefHeight="17.0" prefWidth="86.0" text="Type:" textFill="WHITE" />
       <Label fx:id="lblitemqtyonhand" layoutX="179.0" layoutY="306.0" prefHeight="17.0" prefWidth="86.0" text="qty On Hands:" textFill="WHITE" />
       <RadioButton fx:id="radiodelivery" layoutX="750.0" layoutY="144.0" mnemonicParsing="false" onAction="#radiodeliveryOnAction" prefHeight="17.0" prefWidth="86.0" text="Yes/No" textFill="WHITE" />
       <Label fx:id="lblorderdate" layoutX="490.0" layoutY="212.0" prefHeight="17.0" prefWidth="250.0" text="Order Date" textFill="WHITE">
@@ -127,5 +127,14 @@
       <Label layoutX="954.0" layoutY="179.0" text="See Order Details" textFill="WHITE" />
       <ComboBox fx:id="cmbcustid" layoutX="172.0" layoutY="132.0" onAction="#cmbcustidOnAction" prefHeight="25.0" prefWidth="160.0" />
       <ComboBox fx:id="cmbitemcode" layoutX="170.0" layoutY="217.0" onAction="#cmbitemcodeOnAction" prefHeight="25.0" prefWidth="160.0" />
+      <Label fx:id="lblchangingcusname" layoutX="272.0" layoutY="163.0" prefHeight="17.0" prefWidth="127.0" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblchangingitmname" layoutX="258.0" layoutY="256.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingunitprice" layoutX="258.0" layoutY="274.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingcategory" layoutX="258.0" layoutY="290.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingqtyonhands" layoutX="258.0" layoutY="307.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
    </children>
 </AnchorPane>
