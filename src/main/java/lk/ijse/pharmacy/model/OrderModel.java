@@ -1,6 +1,6 @@
 package lk.ijse.pharmacy.model;
 
-<<<<<<< HEAD
+
 import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.dto.PlaceOrder;
 import lk.ijse.pharmacy.util.CrudUtil;
@@ -75,14 +75,7 @@ public class OrderModel {
                 ordpay
         );
     }
-=======
-import javafx.scene.chart.XYChart;
-import lk.ijse.pharmacy.util.CrudUtil;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class OrderModel {
     public static int getTotalSales() throws SQLException, ClassNotFoundException {
         String sql="SELECT count(orderID) FROM orders WHERE date =curdate()";
         ResultSet resultSet= CrudUtil.crudUtil(sql);
@@ -103,5 +96,5 @@ public class OrderModel {
 //        return series;
 //
 //    }
->>>>>>> 5e7c916dfe01407dfa6c7b342c0cbf59764de6d4
+
 }

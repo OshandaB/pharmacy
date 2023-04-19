@@ -92,7 +92,6 @@ public class CustomerModel {
         return obList;
     }
 
-<<<<<<< HEAD
     public static List<String> loadIds() throws SQLException, ClassNotFoundException {
         String sql = "SELECT custID FROM customer";
         ResultSet resultSet = CrudUtil.crudUtil(sql);
@@ -107,15 +106,15 @@ public class CustomerModel {
 
     public static String getCustName(String cust_id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT firstName,lastName FROM customer WHERE custID=?";
-        ResultSet resultSet = CrudUtil.crudUtil(sql,cust_id);
+        ResultSet resultSet = CrudUtil.crudUtil(sql, cust_id);
 
-        if(resultSet.next()){
+        if (resultSet.next()) {
             return (new String(
-                    resultSet.getString(1)+" "+resultSet.getString(2)
+                    resultSet.getString(1) + " " + resultSet.getString(2)
             ));
         }
         return null;
-=======
+    }
     public static int getTotCustomers() throws SQLException, ClassNotFoundException {
         String sql="SELECT COUNT(custID) FROM Customer";
         ResultSet resultSet= CrudUtil.crudUtil(sql);
@@ -124,6 +123,6 @@ public class CustomerModel {
             count=resultSet.getInt(1);
         }
         return count;
->>>>>>> 5e7c916dfe01407dfa6c7b342c0cbf59764de6d4
+
     }
 }
