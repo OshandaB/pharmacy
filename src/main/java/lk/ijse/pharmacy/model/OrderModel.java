@@ -1,5 +1,6 @@
 package lk.ijse.pharmacy.model;
 
+import javafx.scene.chart.XYChart;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -15,4 +16,15 @@ public class OrderModel {
         }
         return count;
     }
+
+//    public static XYChart.Series lineChartData() throws SQLException, ClassNotFoundException {
+//        String sql="SELECT MONTHNAME(date),sum(orderPayment) from orders group by MONTHNAME(date)";
+//        ResultSet resultSet=CrudUtil.crudUtil(sql);
+//        XYChart.Series series=new XYChart.Series();
+//        while (resultSet.next()){
+//            series.getData().add(new XYChart.Data(resultSet.getString(1),resultSet.getInt(2)));
+//        }
+//        return series;
+//
+//    }
 }
