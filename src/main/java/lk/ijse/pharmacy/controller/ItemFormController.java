@@ -38,25 +38,25 @@ public class ItemFormController {
     private TableColumn<?, ?> tblexpDate;
 
     @FXML
-    private JFXTextField txtItemCode;
-
-    @FXML
-    private JFXTextField txtItemMedName;
-
-    @FXML
-    private JFXTextField txtItemType;
-
-    @FXML
-    private JFXTextField txtItemDate;
-
-    @FXML
-    private JFXTextField txtItemQOH;
-
-    @FXML
-    private JFXTextField txtItemmfgDate;
-
-    @FXML
     private TextField txtsearchItem;
+
+    @FXML
+    private TextField txtItemCode;
+
+    @FXML
+    private TextField txtItemMedName;
+
+    @FXML
+    private TextField txtItemType;
+
+    @FXML
+    private TextField txtItemDate;
+
+    @FXML
+    private TextField txtItemQOH;
+
+    @FXML
+    private TextField txtItemmfgDate;
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {

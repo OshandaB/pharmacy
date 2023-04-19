@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -43,47 +42,38 @@
             <TableColumn fx:id="tblexpDate" prefWidth="183.0" text="expDate" />
          </columns>
       </TableView>
-      <JFXButton layoutX="1015.0" layoutY="367.0" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-radius: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.6), 10, 0, 0, 10);" text="Delete" />
-      <JFXButton layoutX="873.0" layoutY="367.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-radius: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.6), 10, 0, 0, 10);" text="Update" />
-      <JFXButton layoutX="725.0" layoutY="367.0" onAction="#buttonSaveOnACT" prefHeight="31.0" prefWidth="102.0" style="-fx-background-radius: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.6), 10, 0, 0, 10);" text="Save" />
-      <JFXTextField fx:id="txtItemCode" focusColor="#0d0000" labelFloat="true" layoutX="251.0" layoutY="142.0" prefHeight="31.0" prefWidth="187.0" promptText="Item Code" styleClass="EmloyeeTxtColour" stylesheets="@../../../../../../../../FP/src/main/resources/lk.ijse.global_flavour.styles/style.css" unFocusColor="BLACK">
+      <JFXButton layoutX="1015.0" layoutY="367.0" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-radius: 15; -fx-background-color: black;" text="Delete" textFill="#fffefe">
          <font>
-            <Font size="22.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txtItemMedName" focusColor="#0d0000" labelFloat="true" layoutX="502.0" layoutY="142.0" prefHeight="31.0" prefWidth="187.0" promptText="MedNmae" styleClass="EmloyeeTxtColour" stylesheets="@../../../../../../../../FP/src/main/resources/lk.ijse.global_flavour.styles/style.css" unFocusColor="BLACK">
+            <Font name="System Bold" size="15.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="873.0" layoutY="367.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-radius: 15; -fx-background-color: black;" text="Update" textFill="WHITE">
          <font>
-            <Font size="22.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txtItemType" focusColor="#0d0000" labelFloat="true" layoutX="753.0" layoutY="142.0" prefHeight="31.0" prefWidth="187.0" promptText="type" styleClass="EmloyeeTxtColour" stylesheets="@../../../../../../../../FP/src/main/resources/lk.ijse.global_flavour.styles/style.css" unFocusColor="BLACK">
+            <Font name="System Bold" size="15.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="725.0" layoutY="367.0" onAction="#buttonSaveOnACT" prefHeight="31.0" prefWidth="102.0" style="-fx-background-radius: 15; -fx-background-color: #58AF50;" text="Add">
          <font>
-            <Font size="22.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txtItemDate" focusColor="#0d0000" labelFloat="true" layoutX="250.0" layoutY="251.0" prefHeight="31.0" prefWidth="187.0" promptText="expDate" styleClass="EmloyeeTxtColour" stylesheets="@../../../../../../../../FP/src/main/resources/lk.ijse.global_flavour.styles/style.css" unFocusColor="BLACK">
+            <Font name="System Bold" size="15.0" />
+         </font></JFXButton>
+      <TextField fx:id="txtsearchItem" layoutX="948.0" layoutY="44.0" onAction="#itemIdOnAction" onKeyTyped="#searchItemOnKey" prefHeight="21.0" prefWidth="176.0" promptText="Search">
          <font>
-            <Font size="22.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txtItemQOH" focusColor="#0d0000" labelFloat="true" layoutX="499.0" layoutY="251.0" prefHeight="31.0" prefWidth="187.0" promptText="Quantity On Hands" styleClass="EmloyeeTxtColour" stylesheets="@../../../../../../../../FP/src/main/resources/lk.ijse.global_flavour.styles/style.css" unFocusColor="BLACK">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txtItemmfgDate" focusColor="#0d0000" labelFloat="true" layoutX="753.0" layoutY="251.0" prefHeight="31.0" prefWidth="187.0" promptText="mfDate" styleClass="EmloyeeTxtColour" stylesheets="@../../../../../../../../FP/src/main/resources/lk.ijse.global_flavour.styles/style.css" unFocusColor="BLACK">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </JFXTextField>
-      <TextField fx:id="txtsearchItem" layoutX="938.0" layoutY="61.0" onAction="#itemIdOnAction" onKeyTyped="#searchItemOnKey" prefHeight="14.0" prefWidth="176.0" promptText="Search" style="-fx-background-radius: 15;">
-         <font>
-            <Font name="Algerian" size="18.0" />
+            <Font size="18.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="1074.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="21.0" fitWidth="31.0" layoutX="1096.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/icons8-search-96.png" />
          </image></ImageView>
+      <TextField fx:id="txtItemCode" layoutX="233.0" layoutY="164.0" prefHeight="31.0" prefWidth="204.0" />
+      <TextField fx:id="txtItemMedName" layoutX="499.0" layoutY="164.0" prefHeight="31.0" prefWidth="204.0" />
+      <TextField fx:id="txtItemType" layoutX="761.0" layoutY="164.0" prefHeight="31.0" prefWidth="204.0" />
+      <TextField fx:id="txtItemDate" layoutX="233.0" layoutY="257.0" prefHeight="31.0" prefWidth="204.0" />
+      <TextField fx:id="txtItemQOH" layoutX="500.0" layoutY="257.0" prefHeight="31.0" prefWidth="204.0" />
+      <TextField fx:id="txtItemmfgDate" layoutX="761.0" layoutY="257.0" prefHeight="31.0" prefWidth="204.0" />
+      <Label layoutX="233.0" layoutY="141.0" prefHeight="21.0" prefWidth="204.0" text="Item Code" />
+      <Label layoutX="500.0" layoutY="141.0" prefHeight="21.0" prefWidth="204.0" text="MedName" />
+      <Label layoutX="761.0" layoutY="141.0" prefHeight="21.0" prefWidth="204.0" text="type" />
+      <Label layoutX="235.0" layoutY="236.0" prefHeight="21.0" prefWidth="204.0" text="expDate" />
+      <Label layoutX="501.0" layoutY="236.0" prefHeight="21.0" prefWidth="204.0" text="Quantity On Hands" />
+      <Label layoutX="763.0" layoutY="236.0" prefHeight="21.0" prefWidth="204.0" text="mfDate" />
    </children>
 </AnchorPane>
