@@ -27,6 +27,7 @@
       <AnchorPane layoutX="69.0" layoutY="124.0" prefHeight="462.0" prefWidth="996.0">
          <children>
             <JFXButton buttonType="RAISED" layoutX="84.0" layoutY="66.0" onAction="#btnOnCustomerDetaiils" prefHeight="48.0" prefWidth="227.0" style="-fx-background-color: LIME green;" text="Customer Details" />
+            <JFXButton buttonType="RAISED" layoutX="84.0" layoutY="150.0" onAction="#btnOnEmployeDetaiils" prefHeight="48.0" prefWidth="227.0" style="-fx-background-color: LIME green;" text="Employee Details" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="23.0" fitWidth="31.0" layoutX="97.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
