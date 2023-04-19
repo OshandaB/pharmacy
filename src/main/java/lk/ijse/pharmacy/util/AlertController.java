@@ -4,7 +4,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.util.Optional;
 
@@ -73,4 +76,17 @@ public class AlertController {
         }
         return false;
     }
+
+    public static void animationMesseage(String image, String title, String text) {
+        Image img = new Image(String.valueOf(image), 96, 96, false, false);
+        Notifications notificationBuilder = Notifications.create()
+                .title(title)
+                .text(text)
+                .graphic(new ImageView(img))
+                .hideAfter(Duration.seconds(3));
+        notificationBuilder.darkStyle();
+        notificationBuilder.show();
+
+    }
+
 }
