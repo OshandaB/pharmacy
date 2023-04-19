@@ -27,4 +27,15 @@ public class ReportsFormController {
             }
         }
     }
+
+    public void btnOnEmployeDetaiils(ActionEvent event) {
+        InputStream resource = this.getClass().getResourceAsStream("/reports/Employyee.jrxml");
+        try {
+            JasperReport jasperReport = JasperCompileManager.compileReport(resource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
