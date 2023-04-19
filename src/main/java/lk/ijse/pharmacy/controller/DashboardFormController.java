@@ -1,6 +1,7 @@
 package lk.ijse.pharmacy.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -9,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import lk.ijse.pharmacy.model.CustomerModel;
 import lk.ijse.pharmacy.model.EmployeeModel;
+import lk.ijse.pharmacy.model.OrderDetailModel;
+import lk.ijse.pharmacy.model.OrderModel;
 import lk.ijse.pharmacy.util.Navigation;
 
 import java.sql.SQLException;
@@ -83,7 +86,6 @@ public class DashboardFormController {
     public void EmployeeAddOnAction(ActionEvent actionEvent) {
     }
 
-<<<<<<< HEAD
 
     private void countTotalCust(){
         try {
@@ -107,19 +109,42 @@ public class DashboardFormController {
         }
     }
 
+    private void countTotalSales(){
+        try {
+            int count = OrderModel.getTotalSales();
+            lblTotalSales.setText(String.valueOf(count));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void initialize() {
         countTotalCust();
         countTotalEmp();
+        countTotalSales();
+
+        setDataToPieChart();
 
         lbldate.setText(String.valueOf(LocalDate.now()));
     }
 
-=======
+    public void setDataToPieChart() {
+        ObservableList<PieChart.Data> pieChartData = null;
+        try {
+            pieChartData = OrderDetailModel.getDataToPieChart();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+        pieChart.setData(pieChartData);
+    }
+
     public void btnReportsFormOnAction(ActionEvent event) {
         Navigation.onTheTopNavigation(pane, "reports_form.fxml");
     }
->>>>>>> bd629ea7721dffe418254407ca7326410327079d
 }
 
 
