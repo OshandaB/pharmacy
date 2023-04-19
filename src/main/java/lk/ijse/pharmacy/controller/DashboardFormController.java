@@ -83,6 +83,7 @@ public class DashboardFormController {
     public void EmployeeAddOnAction(ActionEvent actionEvent) {
     }
 
+<<<<<<< HEAD
 
     private void countTotalCust(){
         try {
@@ -114,6 +115,11 @@ public class DashboardFormController {
         lbldate.setText(String.valueOf(LocalDate.now()));
     }
 
+=======
+    public void btnReportsFormOnAction(ActionEvent event) {
+        Navigation.onTheTopNavigation(pane, "reports_form.fxml");
+    }
+>>>>>>> bd629ea7721dffe418254407ca7326410327079d
 }
 
 
