@@ -41,7 +41,7 @@ public class CustomerModel {
                 customer.getStreet(),
                 customer.getCity(),
                 customer.getLane(),
-                customer.getCity(),
+                customer.getContact(),
                 customer.getCustID()
         );
     }
