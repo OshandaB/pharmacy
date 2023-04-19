@@ -228,7 +228,7 @@ public class SupplierFormController implements Initializable {
         try {
             ObservableList<SupplierTm> obList = SupplierModel.getAll();
 
-            tblCustomer.setItems(obList);
+            tblSupplier.setItems(obList);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
