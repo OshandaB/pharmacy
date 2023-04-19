@@ -8,12 +8,11 @@ import lk.ijse.pharmacy.util.CrudUtil;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
-=======
+
 import java.time.LocalDate;
 import java.time.LocalTime;
->>>>>>> ecd191fa4d4bcbb481a87af93c7bd21f31bfc2ab
 import java.util.List;
 
 public class OrderModel {
