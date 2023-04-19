@@ -117,3 +117,10 @@ CREATE TABLE Supply(
                        CONSTRAINT FOREIGN KEY(supOrderID) REFERENCES SupplierOrder (supOrderID)
                            ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+create table if not exists User(
+                                   Username varchar(30),
+                                   Password varchar(30) NOT NULL ,
+                                   Email varchar(50) unique not null,
+                                   constraint primary key (Username)
+);
