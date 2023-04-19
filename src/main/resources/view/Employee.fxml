@@ -38,7 +38,7 @@
             <TableColumn fx:id="colContact" prefWidth="158.0" text="Contact" />
          </columns>
       </TableView>
-      <TextField fx:id="txtSearchId" layoutX="856.0" layoutY="67.0" onAction="#txtSearchIdOnAction" promptText="Search Id" />
+      <TextField fx:id="txtSearchId" layoutX="856.0" layoutY="67.0" onAction="#txtSearchIdOnAction" onKeyTyped="#txtSearchKeyTyped" promptText="Search Id" />
       <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="1036.0" layoutY="66.0" onMouseClicked="#imgSearchIconOnMouseClickedAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/searchbarIcon.png" />
@@ -59,7 +59,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtEmployeeId" layoutX="80.0" layoutY="146.0" prefHeight="25.0" prefWidth="218.0" />
+      <TextField fx:id="txtEmployeeId" layoutX="80.0" layoutY="146.0" onMouseClicked="#txtIdOnMouseClicked" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="78.0" layoutY="123.0" prefHeight="17.0" prefWidth="149.0" text="Employee ID" />
       <TextField fx:id="txtFirstName" layoutX="464.0" layoutY="145.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="462.0" layoutY="122.0" prefHeight="17.0" prefWidth="149.0" text="First Name" />
@@ -71,7 +71,9 @@
       <Label layoutX="461.0" layoutY="199.0" prefHeight="17.0" prefWidth="149.0" text="City" />
       <TextField fx:id="txtLane" layoutX="851.0" layoutY="221.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="849.0" layoutY="198.0" prefHeight="17.0" prefWidth="149.0" text="Lane" />
-      <TextField fx:id="txtContact" layoutX="80.0" layoutY="305.0" prefHeight="25.0" prefWidth="218.0" />
+      <TextField fx:id="txtContact" layoutX="80.0" layoutY="305.0" onMouseClicked="#txtContactOnMouseClicked" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="78.0" layoutY="282.0" prefHeight="17.0" prefWidth="149.0" text="Contact" />
+      <Label fx:id="lblinvalidcustid" layoutX="80.0" layoutY="168.0" prefHeight="17.0" prefWidth="304.0" text="Wrong Employee ID Format. (Valid Format - &quot;emp-000&quot;)" textFill="RED" />
+      <Label fx:id="lblinvalidcontact" layoutX="80.0" layoutY="329.0" text="Invalid Contact" textFill="RED" />
    </children>
 </AnchorPane>

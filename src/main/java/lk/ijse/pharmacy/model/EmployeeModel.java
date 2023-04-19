@@ -1,6 +1,11 @@
 package lk.ijse.pharmacy.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import lk.ijse.pharmacy.dto.Customer;
 import lk.ijse.pharmacy.dto.Employee;
+import lk.ijse.pharmacy.tm.CustomerTm;
+import lk.ijse.pharmacy.tm.EmployeeTm;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -25,14 +30,14 @@ public class EmployeeModel {
         );
     }
 
-    public static List<Employee> getAll() throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM employee";
-        List<Employee> allData = new ArrayList<>();
+    public static ObservableList<EmployeeTm> getAll() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM Employee";
+
+        ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
 
         ResultSet resultSet = CrudUtil.crudUtil(sql);
-
-        while (resultSet.next()){
-            allData.add(new Employee(
+        while (resultSet.next()) {
+            obList.add(new EmployeeTm(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -42,7 +47,7 @@ public class EmployeeModel {
                     resultSet.getString(7)
             ));
         }
-        return allData;
+        return obList;
     }
 
     public static boolean update(Employee employee) throws SQLException, ClassNotFoundException {
@@ -58,5 +63,28 @@ public class EmployeeModel {
                 employee.getContact(),
                 employee.getEmpId()
         );
+    }
+
+    public static boolean delete(String empId) throws SQLException, ClassNotFoundException {
+        String sql = "DELETE FROM Employee WHERE empID = ?";
+        return CrudUtil.crudUtil(sql, empId);
+    }
+
+    public static Employee findById(String id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM Employee WHERE empID=?";
+
+        ResultSet resultSet = CrudUtil.crudUtil(sql,id);
+        if(resultSet.next()){
+            return (new Employee(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6),
+                    resultSet.getString(7)
+            ));
+        }
+        return null;
     }
 }

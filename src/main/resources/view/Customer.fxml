@@ -79,6 +79,6 @@
       <Label layoutX="105.0" layoutY="264.0" prefHeight="17.0" prefWidth="114.0" text="Contact Number:" />
       <TextField fx:id="txtContact" layoutX="105.0" layoutY="283.0" onMouseClicked="#txtContactOnMouseClicked" prefHeight="25.0" prefWidth="218.0" />
       <Label fx:id="lblinvalidcustid" layoutX="105.0" layoutY="164.0" prefHeight="17.0" prefWidth="304.0" text="Wrong Customer ID Format. (Valid Format - &quot;cust-000&quot;)" textFill="RED" />
-      <Label fx:id="lblinvalidcontact" layoutX="105.0" layoutY="308.0" text="Invalid Contact( Start with 0 )" textFill="RED" />
+      <Label fx:id="lblinvalidcontact" layoutX="105.0" layoutY="308.0" text="Invalid Contact" textFill="RED" />
    </children>
 </AnchorPane>
