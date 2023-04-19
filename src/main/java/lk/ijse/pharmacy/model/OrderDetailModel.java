@@ -1,5 +1,9 @@
 package lk.ijse.pharmacy.model;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -32,8 +36,11 @@ public class OrderDetailModel {
                 placeOrder.getOrdereditemqty()
         );
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
 
     public static ObservableList<PieChart.Data> getDataToPieChart() throws SQLException, ClassNotFoundException {
         String sql="SELECT medicine.medName,COUNT(orderdetail.medID) FROM orderDetail INNER JOIN medicine ON medicine.medID = orderdetail.medID INNER JOIN orders\n" +
@@ -50,5 +57,9 @@ public class OrderDetailModel {
             );
         }
         return datalist;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
     }
 }

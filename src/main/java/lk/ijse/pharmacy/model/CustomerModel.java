@@ -115,7 +115,10 @@ public class CustomerModel {
         }
         return null;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
     public static int getTotCustomers() throws SQLException, ClassNotFoundException {
         String sql="SELECT COUNT(custID) FROM Customer";
         ResultSet resultSet= CrudUtil.crudUtil(sql);
@@ -124,5 +127,9 @@ public class CustomerModel {
             count=resultSet.getInt(1);
         }
         return count;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
     }
 }
