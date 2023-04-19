@@ -59,8 +59,8 @@ public class SignUPController {
             try {
                 isSaved = UserModel.save(user);
                 if (isSaved) {
-                    System.out.println("saved");
                     signUPBtn.getScene().getWindow().hide();
+                    Navigation.switchNavigation("LoginUser.fxml",event);
                     emailTxt.setText("");
                     userNameTxt.setText("");
                     passwordTxt.setText("");
