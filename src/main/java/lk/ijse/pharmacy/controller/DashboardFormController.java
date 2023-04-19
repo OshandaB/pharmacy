@@ -8,9 +8,11 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import lk.ijse.pharmacy.model.CustomerModel;
+import lk.ijse.pharmacy.model.EmployeeModel;
 import lk.ijse.pharmacy.util.Navigation;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class DashboardFormController {
 
@@ -93,10 +95,23 @@ public class DashboardFormController {
         }
     }
 
+    private void countTotalEmp(){
+        try {
+            int count = EmployeeModel.getTotEmployee();
+            lblTotalEmployee.setText(String.valueOf(count));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void initialize() {
         countTotalCust();
+        countTotalEmp();
 
+        lbldate.setText(String.valueOf(LocalDate.now()));
     }
 
 }

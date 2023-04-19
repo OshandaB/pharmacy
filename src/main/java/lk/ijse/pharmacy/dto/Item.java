@@ -11,6 +11,7 @@ import lombok.*;
 public class Item {
     private String ItemCode;
     private String ItemMedName;
+    private String ItemUnitPrice;
     private String ItemType;
     private String ItemDate;
     private String ItemQOH;
