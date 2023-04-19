@@ -1,9 +1,12 @@
 package lk.ijse.pharmacy.model;
 
-<<<<<<< HEAD
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import lk.ijse.pharmacy.dto.PlaceOrder;
 import lk.ijse.pharmacy.util.CrudUtil;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,20 +31,13 @@ public class OrderDetailModel {
                 orderid,
                 placeOrder.getOrdereditemqty()
         );
-=======
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
-import lk.ijse.pharmacy.util.CrudUtil;
+    }
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class OrderDetailModel {
 
     public static ObservableList<PieChart.Data> getDataToPieChart() throws SQLException, ClassNotFoundException {
         String sql="SELECT medicine.medName,COUNT(orderdetail.medID) FROM orderDetail INNER JOIN medicine ON medicine.medID = orderdetail.medID INNER JOIN orders\n" +
-                "                ON orderdetail.orderID=orders.orderID WHERE MONTH(orders.date) = MONTH(CURRENT_DATE()) GROUP BY medicine.medName LIMIT 5;\n";
+                " ON orderdetail.orderID=orders.orderID WHERE MONTH(orders.date) = MONTH(CURRENT_DATE()) GROUP BY medicine.medName LIMIT 5;\n";
         ObservableList<PieChart.Data> datalist = FXCollections.observableArrayList();
         ResultSet resultSet = CrudUtil.crudUtil(sql);
 
@@ -54,6 +50,5 @@ public class OrderDetailModel {
             );
         }
         return datalist;
->>>>>>> 5e7c916dfe01407dfa6c7b342c0cbf59764de6d4
     }
 }
