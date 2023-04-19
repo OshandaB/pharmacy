@@ -49,6 +49,10 @@ public class DashboardFormController {
 
     public void EmployeeAddOnAction(ActionEvent actionEvent) {
     }
+
+    public void btnReportsFormOnAction(ActionEvent event) {
+        Navigation.onTheTopNavigation(pane, "reports_form.fxml");
+    }
 }
 
 
