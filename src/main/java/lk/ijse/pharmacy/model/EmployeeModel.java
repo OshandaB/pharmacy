@@ -87,4 +87,14 @@ public class EmployeeModel {
         }
         return null;
     }
+
+    public static int getTotEmployee() throws SQLException, ClassNotFoundException {
+        String sql="SELECT COUNT(empID) FROM Employee";
+        ResultSet resultSet= CrudUtil.crudUtil(sql);
+        int count=0;
+        while (resultSet.next()){
+            count=resultSet.getInt(1);
+        }
+        return count;
+    }
 }

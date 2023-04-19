@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -46,7 +47,7 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <JFXButton alignment="TOP_LEFT" onAction="#btnHomeOnAction" prefHeight="48.0" prefWidth="181.0" text="HOME" textFill="#f8f6f6" GridPane.columnIndex="1">
+                        <JFXButton fx:id="btnHome" alignment="TOP_LEFT" onAction="#btnHomeOnAction" prefHeight="48.0" prefWidth="181.0" text="HOME" textFill="#f8f6f6" GridPane.columnIndex="1">
                            <font>
                               <Font name="Times New Roman Bold" size="24.0" />
                            </font>
@@ -299,7 +300,7 @@
             <Font name="System Bold Italic" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="1295.0" layoutY="98.0" prefHeight="25.0" prefWidth="225.0" text="2023.03.02">
+      <Label fx:id="lbldate" layoutX="1295.0" layoutY="98.0" prefHeight="25.0" prefWidth="225.0" text="2033.03.02">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
@@ -314,29 +315,21 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="588.0" layoutY="326.0" prefHeight="93.0" prefWidth="89.0" text="04">
+      <Label fx:id="lblTotalCustomer" layoutX="588.0" layoutY="326.0" prefHeight="93.0" prefWidth="89.0" text="04">
          <font>
             <Font name="System Bold" size="64.0" />
          </font>
       </Label>
-      <Label layoutX="941.0" layoutY="326.0" prefHeight="105.0" prefWidth="84.0" text="04">
+      <Label fx:id="lblTotalSales" layoutX="941.0" layoutY="326.0" prefHeight="105.0" prefWidth="84.0" text="04">
          <font>
             <Font name="System Bold" size="64.0" />
          </font>
       </Label>
-      <Label layoutX="1295.0" layoutY="326.0" prefHeight="105.0" prefWidth="102.0" text="04">
+      <Label fx:id="lblTotalEmployee" layoutX="1295.0" layoutY="326.0" prefHeight="105.0" prefWidth="102.0" text="04">
          <font>
             <Font name="System Bold" size="64.0" />
          </font>
       </Label>
-      <LineChart layoutX="494.0" layoutY="435.0" prefHeight="329.0" prefWidth="525.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis prefHeight="215.0" prefWidth="44.0" side="LEFT" />
-        </yAxis>
-      </LineChart>
       <Label contentDisplay="CENTER" layoutX="844.0" layoutY="252.0" prefHeight="58.0" prefWidth="266.0" style="-fx-background-color: #FDFEFD; -fx-background-radius: 50 50 50 50;" styleClass="totalCustomerLabel" stylesheets="@../Style/DashboardForm.css" text="           Total Sales" textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="24.0" />
@@ -347,6 +340,17 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Pane fx:id="pane" layoutX="434.0" layoutY="5.0" prefHeight="769.0" prefWidth="1177.0" />
+      <Pane fx:id="pane" layoutX="434.0" layoutY="5.0" prefHeight="769.0" prefWidth="1177.0">
+         <children>
+            <LineChart fx:id="lineChart" layoutX="48.0" layoutY="418.0" prefHeight="329.0" prefWidth="525.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis prefHeight="215.0" prefWidth="44.0" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <PieChart fx:id="pieChart" layoutX="720.0" layoutY="430.0" prefHeight="304.0" prefWidth="402.0" />
+         </children></Pane>
    </children>
 </AnchorPane>

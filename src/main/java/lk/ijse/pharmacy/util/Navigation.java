@@ -57,14 +57,19 @@ import java.net.URL;
             }
         }
 
-        public static void Navigation(String link) throws IOException {
+        public static void navigation(String link) {
             URL resource = Navigation.class.getResource("/view/" + link);
-            Parent parent = FXMLLoader.load(resource);
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setAlwaysOnTop(true);
-            stage.setScene(scene);
-            stage.show();
+            Parent parent = null;
+            try {
+                parent = FXMLLoader.load(resource);
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.setAlwaysOnTop(true);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
 
