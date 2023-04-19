@@ -51,6 +51,10 @@ public class SignUPController {
     void signBtnOnAction(ActionEvent event) {
          if(emailTxt.getText().isEmpty()|userNameTxt.getText().isEmpty()|passwordTxt.getText().isEmpty()|
                 confirmPassword.getText().isEmpty()){
+             userNameTxt.setStyle("-fx-border-color: #dfa47e; -fx-border-width: 3 3 3 3;");
+             passwordTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+             confirmPassword.setStyle("-fx-border-color: #dfa47e; -fx-border-width: 3 3 3 3;");
+             emailTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
             AlertController.errormessage("please fill all empty fields before signup for a account");
 
         }else{

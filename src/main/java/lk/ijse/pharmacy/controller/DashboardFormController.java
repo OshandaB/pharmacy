@@ -4,8 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import lk.ijse.pharmacy.model.CustomerModel;
@@ -141,6 +140,24 @@ public class DashboardFormController {
 
         pieChart.setData(pieChartData);
     }
+
+//    void lineChart() {
+//        lineChart.setTitle("Income Chart 2023");
+//        final CategoryAxis xAxis = new CategoryAxis();
+//        final NumberAxis yAxis = new NumberAxis();
+//        xAxis.setLabel("Month");
+//
+//
+//        try {
+//            XYChart.Series series = OrderModel.lineChartData();
+//            series.setName("Income Chart");
+//            lineChart.getData().add(series);
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void btnReportsFormOnAction(ActionEvent event) {
         Navigation.onTheTopNavigation(pane, "reports_form.fxml");
