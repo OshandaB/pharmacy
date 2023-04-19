@@ -12,6 +12,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import lk.ijse.pharmacy.dto.User;
 import lk.ijse.pharmacy.model.UserModel;
+import lk.ijse.pharmacy.util.AlertController;
 import lk.ijse.pharmacy.util.Navigation;
 
 public class SignUPController {
@@ -48,28 +49,40 @@ public class SignUPController {
 
     @FXML
     void signBtnOnAction(ActionEvent event) {
-        String username = userNameTxt.getText();
-        String password = passwordTxt.getText();
-        String email = emailTxt.getText();
+         if(emailTxt.getText().isEmpty()|userNameTxt.getText().isEmpty()|passwordTxt.getText().isEmpty()|
+                confirmPassword.getText().isEmpty()){
+             userNameTxt.setStyle("-fx-border-color: #dfa47e; -fx-border-width: 3 3 3 3;");
+             passwordTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+             confirmPassword.setStyle("-fx-border-color: #dfa47e; -fx-border-width: 3 3 3 3;");
+             emailTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+            AlertController.errormessage("please fill all empty fields before signup for a account");
 
-        User user = new User(username, password, email);
+        }else{
+             String username = userNameTxt.getText();
+             String password = passwordTxt.getText();
+             String email = emailTxt.getText();
 
-        if (passwordTxt.getText().equals(confirmPassword.getText())) {
-            boolean isSaved = false;
-            try {
-                isSaved = UserModel.save(user);
-                if (isSaved) {
-                    signUPBtn.getScene().getWindow().hide();
-                    Navigation.switchNavigation("LoginUser.fxml",event);
-                    emailTxt.setText("");
-                    userNameTxt.setText("");
-                    passwordTxt.setText("");
-                    confirmPassword.setText("");
+             User user = new User(username, password, email);
 
-                }
-            } catch (Exception throwables) {
-                throwables.printStackTrace();
-            }
+             if (passwordTxt.getText().equals(confirmPassword.getText())) {
+                 boolean isSaved = false;
+                 try {
+                     isSaved = UserModel.save(user);
+                     if (isSaved) {
+                         System.out.println("saved");
+                         signUPBtn.getScene().getWindow().hide();
+                         emailTxt.setText("");
+                         userNameTxt.setText("");
+                         passwordTxt.setText("");
+                         confirmPassword.setText("");
+
+                     }
+                 } catch (Exception throwables) {
+                     throwables.printStackTrace();
+                 }
+
+
+             }
 
         }
     }
