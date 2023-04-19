@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Customer {
-    private String custID;
+public class Supplier {
+    private String supID;
     private String firstName;
     private String lastName;
     private String street;

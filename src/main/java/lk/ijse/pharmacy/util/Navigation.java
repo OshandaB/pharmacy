@@ -35,6 +35,7 @@ import java.net.URL;
             stage.centerOnScreen();
             stage.show();
         }
+
         public static void popupNavigation(String link) throws IOException {
             URL resource = Navigation.class.getResource("/view/" + link);
             Parent parent = FXMLLoader.load(resource);

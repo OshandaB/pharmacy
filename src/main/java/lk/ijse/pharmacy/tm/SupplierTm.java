@@ -1,4 +1,4 @@
-package lk.ijse.pharmacy.dto;
+package lk.ijse.pharmacy.tm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Customer {
-    private String custID;
-    private String firstName;
-    private String lastName;
+public class SupplierTm {
+    private String supId;
+    private String supFName;
+    private String supLName;
     private String street;
     private String city;
     private String lane;
-    private String contact;
+    private String phoneNumber;
 }
