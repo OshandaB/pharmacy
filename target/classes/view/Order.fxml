@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1184.0" stylesheets="@../Style/customerForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.OrderFormController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1184.0" stylesheets="@../Style/customerForm.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.OrderFormController">
    <children>
       <ImageView fitHeight="790.0" fitWidth="1184.0" layoutX="-6.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,60 +27,114 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="896.0" layoutY="705.0" prefHeight="35.0" prefWidth="218.0" text="United Pharmacy">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="63.0" layoutY="122.0" prefHeight="260.0" prefWidth="996.0">
-         <children>
-            <JFXButton layoutX="761.0" layoutY="204.0" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #58AF50;" styleClass="button-add" text="ADD">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="861.0" layoutY="204.0" styleClass="button-update" text="UPDATE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </JFXButton>
-            <TextField layoutX="753.0" layoutY="45.0" promptText="Search Id" />
-            <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="940.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/searchbarIcon.png" />
-               </image>
-            </ImageView>
-            <Label layoutY="57.0" prefHeight="37.0" prefWidth="262.0" style="-fx-border-color: #000000; -fx-border-radius: 120 120 120 120;" styleClass="labelTotal" stylesheets="@../Style/DashboardForm.css" text="   Total  Orders                  32">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <Label layoutX="849.0" layoutY="65.0" prefHeight="35.0" prefWidth="210.0" text="         2023.03.02">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="83.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/cart2icon.png" />
          </image>
       </ImageView>
-      <TableView layoutX="69.0" layoutY="392.0" prefHeight="306.0" prefWidth="971.0">
-         <columns>
-            <TableColumn prefWidth="160.0" text="OrderId" />
-            <TableColumn prefWidth="160.0" text="CustId" />
-            <TableColumn prefWidth="169.0" text="EmpId" />
-            <TableColumn prefWidth="160.0" text="Date" />
-            <TableColumn prefWidth="160.0" text="Delete" />
-            <TableColumn prefWidth="160.0" text="View" />
-         </columns>
-      </TableView>
-      <JFXButton layoutX="63.0" layoutY="707.0" text="OrderDetail">
+      <Label layoutX="554.0" layoutY="44.0" opacity="0.8" text="ADD NEW ORDER" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="Arial Rounded MT Bold" size="30.0" />
          </font>
+      </Label>
+      <TableView fx:id="tblplaceOrder" focusTraversable="false" layoutX="171.0" layoutY="395.0" onMouseClicked="#tblOnMouseClicked" opacity="0.9" prefHeight="243.0" prefWidth="951.0">
+         <columns>
+            <TableColumn fx:id="colitemcode" prefWidth="95.33334350585938" text="Item Code" />
+            <TableColumn fx:id="colitemname" prefWidth="250.66665649414062" text="Item Name" />
+            <TableColumn fx:id="colunitprice" prefWidth="112.0" text="Unit Price" />
+            <TableColumn fx:id="colcategory" prefWidth="142.00006103515625" text="Type" />
+            <TableColumn fx:id="colquantity" prefWidth="103.33343505859375" text="Quantity" />
+            <TableColumn fx:id="colquantity_unitprice" prefWidth="137.3333740234375" text="Quantity × Unit Price" />
+            <TableColumn fx:id="colaction" prefWidth="106.66670735677087" text="Action" />
+         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TableView>
+      <JFXButton fx:id="btnAddCart" buttonType="RAISED" layoutX="175.0" layoutY="340.0" onAction="#btnaddcartOnAction" onMousePressed="#btnDeleteMousePressed" prefHeight="34.0" prefWidth="143.0" ripplerFill="#19c33e" style="-fx-background-color: #82CD47; -fx-text-fill: white;" styleClass="savebtn" stylesheets="@../../../../../../OneDrive/Documents/IJSE/Assignments/project-wineverse/src/main/resources/lk.ijse.project_wineverse.styles/style.css" text="Add To Cart">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
+      <Label layoutX="490.0" layoutY="115.0" prefHeight="17.0" prefWidth="86.0" text="Order ID:" textFill="WHITE" />
+      <Label layoutX="172.0" layoutY="109.0" prefHeight="17.0" prefWidth="100.0" text="Customer ID:" textFill="WHITE" />
+      <Label layoutX="750.0" layoutY="117.0" prefHeight="17.0" prefWidth="100.0" text="Delivery:" textFill="WHITE" />
+      <Label layoutX="490.0" layoutY="192.0" prefHeight="17.0" prefWidth="86.0" text="Order Date:" textFill="WHITE" />
+      <Label layoutX="172.0" layoutY="196.0" prefHeight="17.0" prefWidth="86.0" text="Item Code:" textFill="WHITE" />
+      <Label layoutX="750.0" layoutY="267.0" prefHeight="17.0" prefWidth="86.0" text="Total Payment:" textFill="WHITE" />
+      <Label fx:id="lblorderid" layoutX="490.0" layoutY="138.0" prefHeight="17.0" prefWidth="250.0" text="Order ID" textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblcustomername" layoutX="175.0" layoutY="160.0" prefHeight="17.0" prefWidth="100.0" text="Customer Name :" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbltotalpay" layoutX="750.0" layoutY="285.0" prefHeight="17.0" prefWidth="250.0" text="0 /=" textFill="RED">
+         <font>
+            <Font name="Agency FB Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblitemname" layoutX="179.0" layoutY="255.0" prefHeight="17.0" prefWidth="86.0" text="Item Name:" textFill="WHITE" />
+      <Label fx:id="lblitmunitprice" layoutX="179.0" layoutY="273.0" prefHeight="17.0" prefWidth="86.0" text="Unit Price:" textFill="WHITE" />
+      <Label fx:id="lblitemcategory" layoutX="179.0" layoutY="289.0" prefHeight="17.0" prefWidth="86.0" text="Type:" textFill="WHITE" />
+      <Label fx:id="lblitemqtyonhand" layoutX="179.0" layoutY="306.0" prefHeight="17.0" prefWidth="86.0" text="qty On Hands:" textFill="WHITE" />
+      <RadioButton fx:id="radiodelivery" layoutX="750.0" layoutY="144.0" mnemonicParsing="false" onAction="#radiodeliveryOnAction" prefHeight="17.0" prefWidth="86.0" text="Yes/No" textFill="WHITE" />
+      <Label fx:id="lblorderdate" layoutX="490.0" layoutY="212.0" prefHeight="17.0" prefWidth="250.0" text="Order Date" textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="25.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="532.0" layoutY="656.0" onAction="#btnplaceorderOnAction" onMousePressed="#btnDeleteMousePressed" prefHeight="34.0" prefWidth="143.0" ripplerFill="#19c33e" style="-fx-background-color: #82CD47 #82CD47; -fx-text-fill: white;" styleClass="savebtn" stylesheets="@../../../../../../OneDrive/Documents/IJSE/Assignments/project-wineverse/src/main/resources/lk.ijse.project_wineverse.styles/style.css" text="Place Order">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="752.0" layoutY="186.0" prefHeight="17.0" prefWidth="86.0" text="Item Quantity:" textFill="WHITE" />
+      <TextField fx:id="orderqty" layoutX="750.0" layoutY="214.0" prefHeight="32.0" prefWidth="93.0" />
+      <ImageView fx:id="addicon" fitHeight="25.0" fitWidth="32.0" layoutX="921.0" layoutY="131.0" onMouseClicked="#addiconOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../OneDrive/Documents/IJSE/Assignments/project-wineverse/src/main/resources/lk.ijse.project_wineverse.assets/addicon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="954.0" layoutY="135.0" text="New Customer" textFill="WHITE" />
+      <Label layoutX="171.0" layoutY="664.0" text="Paid Amount:" textFill="WHITE" />
+      <Label layoutX="336.0" layoutY="665.0" text="Balance:" textFill="WHITE" />
+      <Label fx:id="balancelbl" layoutX="391.0" layoutY="668.0" prefHeight="17.0" prefWidth="100.0" textFill="RED" />
+      <TextField fx:id="txtpaidamount" layoutX="250.0" layoutY="661.0" onKeyTyped="#txtpaidamountKeyTyped" prefHeight="25.0" prefWidth="62.0" />
+      <Label fx:id="lblmoreneeded" layoutX="172.0" layoutY="693.0" text="More money needed:" textFill="RED" />
+      <ImageView fx:id="seeorderdet" fitHeight="39.0" fitWidth="32.0" layoutX="915.0" layoutY="174.0" onMouseClicked="#seeorderdetOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../OneDrive/Documents/IJSE/Assignments/project-wineverse/src/main/resources/lk.ijse.project_wineverse.assets/showdetails.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="954.0" layoutY="179.0" text="See Order Details" textFill="WHITE" />
+      <ComboBox fx:id="cmbcustid" layoutX="172.0" layoutY="132.0" onAction="#cmbcustidOnAction" prefHeight="25.0" prefWidth="160.0" />
+      <ComboBox fx:id="cmbitemcode" layoutX="170.0" layoutY="217.0" onAction="#cmbitemcodeOnAction" prefHeight="25.0" prefWidth="160.0" />
+      <Label fx:id="lblchangingcusname" layoutX="272.0" layoutY="163.0" prefHeight="17.0" prefWidth="127.0" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblchangingitmname" layoutX="258.0" layoutY="256.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingunitprice" layoutX="258.0" layoutY="274.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingcategory" layoutX="258.0" layoutY="290.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingqtyonhands" layoutX="258.0" layoutY="307.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
    </children>
 </AnchorPane>

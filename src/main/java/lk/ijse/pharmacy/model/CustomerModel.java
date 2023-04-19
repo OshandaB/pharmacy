@@ -41,7 +41,7 @@ public class CustomerModel {
                 customer.getStreet(),
                 customer.getCity(),
                 customer.getLane(),
-                customer.getCity(),
+                customer.getContact(),
                 customer.getCustID()
         );
     }
@@ -89,5 +89,15 @@ public class CustomerModel {
             ));
         }
         return obList;
+    }
+
+    public static int getTotCustomers() throws SQLException, ClassNotFoundException {
+        String sql="SELECT COUNT(custID) FROM Customer";
+        ResultSet resultSet= CrudUtil.crudUtil(sql);
+        int count=0;
+        while (resultSet.next()){
+            count=resultSet.getInt(1);
+        }
+        return count;
     }
 }

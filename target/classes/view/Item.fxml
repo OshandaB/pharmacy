@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1187.0" stylesheets="@../Style/customerForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.ItemFormController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1187.0" stylesheets="@../Style/customerForm.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.ItemFormController">
    <children>
       <ImageView fitHeight="790.0" fitWidth="1187.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -34,12 +34,13 @@
       </ImageView>
       <TableView fx:id="mainCOMItem" layoutX="34.0" layoutY="415.0" onMouseClicked="#itemOnMouse" prefHeight="333.0" prefWidth="1083.0">
          <columns>
-            <TableColumn fx:id="tblMedId" prefWidth="151.0" text="MedId" />
-            <TableColumn fx:id="tblMedNmae" prefWidth="149.0" text="MedNmae" />
-            <TableColumn fx:id="tbltype" prefWidth="213.0" text="type" />
-            <TableColumn fx:id="tblQuantityOnHands" prefWidth="205.0" text="Quantity On Hands" />
-            <TableColumn fx:id="tblmfgDate" prefWidth="202.0" text="mfgDate" />
-            <TableColumn fx:id="tblexpDate" prefWidth="183.0" text="expDate" />
+            <TableColumn fx:id="tblMedId" prefWidth="113.99999618530273" text="MedId" />
+            <TableColumn fx:id="tblMedNmae" prefWidth="140.6667022705078" text="MedNmae" />
+            <TableColumn fx:id="tblUnitPrice" prefWidth="179.3333740234375" text="medUnitPrice" />
+            <TableColumn fx:id="tbltype" prefWidth="184.66671752929688" text="type" />
+            <TableColumn fx:id="tblQuantityOnHands" prefWidth="128.6666259765625" text="Quantity On Hands" />
+            <TableColumn fx:id="tblmfgDate" prefWidth="178.0" text="mfgDate" />
+            <TableColumn fx:id="tblexpDate" prefWidth="156.66668701171875" text="expDate" />
          </columns>
       </TableView>
       <JFXButton layoutX="1015.0" layoutY="367.0" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-radius: 15; -fx-background-color: black;" text="Delete" textFill="#fffefe">
@@ -75,5 +76,7 @@
       <Label layoutX="235.0" layoutY="236.0" prefHeight="21.0" prefWidth="204.0" text="expDate" />
       <Label layoutX="501.0" layoutY="236.0" prefHeight="21.0" prefWidth="204.0" text="Quantity On Hands" />
       <Label layoutX="763.0" layoutY="236.0" prefHeight="21.0" prefWidth="204.0" text="mfDate" />
+      <TextField fx:id="txtItemUnitPrice" layoutX="233.0" layoutY="335.0" prefHeight="31.0" prefWidth="204.0" />
+      <Label layoutX="235.0" layoutY="313.0" prefHeight="21.0" prefWidth="204.0" text="Med Unit Price" />
    </children>
 </AnchorPane>

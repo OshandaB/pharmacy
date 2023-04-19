@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1614.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.DashboardFormController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1614.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.DashboardFormController">
    <children>
       <ImageView fitHeight="785.0" fitWidth="1191.0" layoutX="431.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -46,7 +47,7 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <JFXButton alignment="TOP_LEFT" onAction="#btnHomeOnAction" prefHeight="48.0" prefWidth="181.0" text="HOME" textFill="#f8f6f6" GridPane.columnIndex="1">
+                        <JFXButton fx:id="btnHome" alignment="TOP_LEFT" onAction="#btnHomeOnAction" prefHeight="48.0" prefWidth="181.0" text="HOME" textFill="#f8f6f6" GridPane.columnIndex="1">
                            <font>
                               <Font name="Times New Roman Bold" size="24.0" />
                            </font>
@@ -237,6 +238,57 @@
                               <Font name="Times New Roman Bold" size="24.0" />
                            </font>
                         </JFXButton>
+                        <JFXButton alignment="TOP_LEFT" onAction="#btnBillFormOnAction" prefHeight="64.0" prefWidth="228.0" text="BILLFORM" textFill="#f5f5f5">
+                           <font>
+                              <Font name="Times New Roman Bold" size="24.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton alignment="TOP_LEFT" onAction="#btnBillFormOnAction" prefHeight="64.0" prefWidth="228.0" text="BILLFORM" textFill="#f5f5f5">
+                           <font>
+                              <Font name="Times New Roman Bold" size="24.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="TOP_LEFT" layoutX="7.0" layoutY="697.0" prefHeight="48.0" prefWidth="423.0" text="Employee">
+               <font>
+                  <Font name="Times New Roman Bold" size="27.0" />
+               </font>
+               <graphic>
+                  <GridPane prefHeight="38.0" prefWidth="376.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="82.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="294.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="37.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/formw.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="30.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <JFXButton alignment="TOP_LEFT" onAction="#btnReportsFormOnAction" prefHeight="64.0" prefWidth="228.0" text="Reports" textFill="#f5f5f5" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Times New Roman Bold" size="24.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton alignment="TOP_LEFT" onAction="#btnBillFormOnAction" prefHeight="64.0" prefWidth="228.0" text="BILLFORM" textFill="#f5f5f5">
+                           <font>
+                              <Font name="Times New Roman Bold" size="24.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton alignment="TOP_LEFT" onAction="#btnBillFormOnAction" prefHeight="64.0" prefWidth="228.0" text="BILLFORM" textFill="#f5f5f5">
+                           <font>
+                              <Font name="Times New Roman Bold" size="24.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </GridPane>
                </graphic>
@@ -248,7 +300,7 @@
             <Font name="System Bold Italic" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="1295.0" layoutY="98.0" prefHeight="25.0" prefWidth="225.0" text="2023.03.02">
+      <Label fx:id="lbldate" layoutX="1295.0" layoutY="98.0" prefHeight="25.0" prefWidth="225.0" text="2033.03.02">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
@@ -263,29 +315,21 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="588.0" layoutY="326.0" prefHeight="93.0" prefWidth="89.0" text="04">
+      <Label fx:id="lblTotalCustomer" layoutX="588.0" layoutY="326.0" prefHeight="93.0" prefWidth="89.0" text="04">
          <font>
             <Font name="System Bold" size="64.0" />
          </font>
       </Label>
-      <Label layoutX="941.0" layoutY="326.0" prefHeight="105.0" prefWidth="84.0" text="04">
+      <Label fx:id="lblTotalSales" layoutX="941.0" layoutY="326.0" prefHeight="105.0" prefWidth="84.0" text="04">
          <font>
             <Font name="System Bold" size="64.0" />
          </font>
       </Label>
-      <Label layoutX="1295.0" layoutY="326.0" prefHeight="105.0" prefWidth="102.0" text="04">
+      <Label fx:id="lblTotalEmployee" layoutX="1295.0" layoutY="326.0" prefHeight="105.0" prefWidth="102.0" text="04">
          <font>
             <Font name="System Bold" size="64.0" />
          </font>
       </Label>
-      <LineChart layoutX="494.0" layoutY="435.0" prefHeight="329.0" prefWidth="525.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis prefHeight="215.0" prefWidth="44.0" side="LEFT" />
-        </yAxis>
-      </LineChart>
       <Label contentDisplay="CENTER" layoutX="844.0" layoutY="252.0" prefHeight="58.0" prefWidth="266.0" style="-fx-background-color: #FDFEFD; -fx-background-radius: 50 50 50 50;" styleClass="totalCustomerLabel" stylesheets="@../Style/DashboardForm.css" text="           Total Sales" textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="24.0" />
@@ -296,6 +340,17 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Pane fx:id="pane" layoutX="434.0" layoutY="5.0" prefHeight="769.0" prefWidth="1177.0" />
+      <Pane fx:id="pane" layoutX="434.0" layoutY="5.0" prefHeight="769.0" prefWidth="1177.0">
+         <children>
+            <LineChart fx:id="lineChart" layoutX="48.0" layoutY="418.0" prefHeight="329.0" prefWidth="525.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis prefHeight="215.0" prefWidth="44.0" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <PieChart fx:id="pieChart" layoutX="720.0" layoutY="430.0" prefHeight="304.0" prefWidth="402.0" />
+         </children></Pane>
    </children>
 </AnchorPane>

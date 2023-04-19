@@ -59,7 +59,13 @@ public class ItemFormController {
     private TextField txtItemmfgDate;
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    private TextField txtItemUnitPrice;
+
+    @FXML
+    private TableColumn<?, ?> tblUnitPrice;
+
+    @FXML
+    void btnDeleteOnAction(ActionEvent event) throws ClassNotFoundException {
 
 
         String ItemCode = txtItemCode.getText();
@@ -67,8 +73,7 @@ public class ItemFormController {
                 try {
                     boolean isDeleted = ItemModel.delete(ItemCode);
                     if (isDeleted) {
-                        new Alert(Alert.AlertType.CONFIRMATION,"Customer deleted!").show();
-
+                        new Alert(Alert.AlertType.CONFIRMATION,"Item deleted!").show();
                         onActionGetAllItem();
                     }
                 } catch (SQLException e) {
@@ -77,21 +82,24 @@ public class ItemFormController {
 
             }
     @FXML
-    void btnUpdateOnAction(ActionEvent event) {
+    void btnUpdateOnAction(ActionEvent event) throws ClassNotFoundException {
         String ItemCode = txtItemCode.getText();
         String ItemMedName = txtItemMedName.getText();
         String ItemType = txtItemType.getText();
         String ItemQOH = txtItemQOH.getText();
         String ItemDate = txtItemDate.getText();
         String ItemmfgDate = txtItemmfgDate.getText();
+        String ItemUnitPrice = txtItemUnitPrice.getText();
 
-        Item itemAll = new Item(ItemCode, ItemMedName, ItemType,ItemDate,ItemQOH,ItemmfgDate);
+        Item itemAll = new Item(ItemCode, ItemMedName,ItemUnitPrice,ItemType,ItemDate,ItemQOH,ItemmfgDate);
 
         try {
             boolean isUpdated = ItemModel.update(itemAll);
            // AlertController.animationMesseageCorect("CONFIRMATION","Item updated!");
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer updated!").show();
-            onActionGetAllItem();
+            if(isUpdated){
+                new Alert(Alert.AlertType.CONFIRMATION,"Item updated!").show();
+                onActionGetAllItem();
+            }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "something went wrong!").show();
            // AlertController.animationMesseagewrong("Error","something went wrong!");
@@ -100,24 +108,23 @@ public class ItemFormController {
     }
 
     @FXML
-    void buttonSaveOnACT(ActionEvent event) {
+    void buttonSaveOnACT(ActionEvent event) throws ClassNotFoundException {
         String ItemCode = txtItemCode.getText();
         String ItemMedName = txtItemMedName.getText();
         String ItemType = txtItemType.getText();
         String ItemQOH = txtItemQOH.getText();
         String ItemDate = txtItemDate.getText();
         String ItemmfgDate = txtItemmfgDate.getText();
+        String ItemUnitPrice = txtItemUnitPrice.getText();
 
-        Item itemAll = new Item(ItemCode, ItemMedName, ItemType,ItemDate,ItemQOH,ItemmfgDate);
+        Item itemAll = new Item(ItemCode, ItemMedName,ItemUnitPrice, ItemType,ItemDate,ItemQOH,ItemmfgDate);
 
         try {
 //            boolean isSaved = ItemModel.save(code, description, unitPrice, qtyOnHand);
             boolean isSaved = ItemModel.save(itemAll);
             if (isSaved) {
-
-                new Alert(Alert.AlertType.CONFIRMATION,"Customer Added!").show();
+                new Alert(Alert.AlertType.CONFIRMATION,"Item Added!").show();
                 onActionGetAllItem();
-                System.out.println("dsfgdfg");
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -142,12 +149,11 @@ public class ItemFormController {
 
         txtItemCode.setText(columns.get(0).getCellData(row).toString());
         txtItemMedName.setText(columns.get(1).getCellData(row).toString());
-        txtItemType.setText(columns.get(2).getCellData(row).toString());
-        txtItemQOH.setText(columns.get(3).getCellData(row).toString());
-        txtItemmfgDate.setText(columns.get(4).getCellData(row).toString());
-        txtItemDate.setText(columns.get(5).getCellData(row).toString());
-
-
+        txtItemUnitPrice.setText(columns.get(2).getCellData(row).toString());
+        txtItemType.setText(columns.get(3).getCellData(row).toString());
+        txtItemQOH.setText(columns.get(4).getCellData(row).toString());
+        txtItemmfgDate.setText(columns.get(5).getCellData(row).toString());
+        txtItemDate.setText(columns.get(6).getCellData(row).toString());
     }
 
     @FXML
@@ -155,13 +161,13 @@ public class ItemFormController {
 
     }
     @FXML
-    void initialize() {
+    void initialize() throws ClassNotFoundException {
         onActionGetAllItem();
         setCellValuefactory();
 
     }
 
-    void onActionGetAllItem() {
+    void onActionGetAllItem() throws ClassNotFoundException {
         try {
             ObservableList<ItemTM> supList = ItemModel.getAll();
             mainCOMItem.setItems(supList);
@@ -181,7 +187,7 @@ public class ItemFormController {
         tblQuantityOnHands.setCellValueFactory(new PropertyValueFactory<>("ItemQOH"));
         tblmfgDate.setCellValueFactory(new PropertyValueFactory<>("ItemmfgDate"));
         tblexpDate.setCellValueFactory(new PropertyValueFactory<>("ItemDate"));
-
+        tblUnitPrice.setCellValueFactory(new PropertyValueFactory<>("ItemUnitPrice"));
     }
 
 }
