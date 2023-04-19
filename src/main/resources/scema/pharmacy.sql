@@ -51,6 +51,7 @@ CREATE TABLE Orders(
                        custID VARCHAR(10),
                        empID VARCHAR(10),
                        date DATE,
+                       orderPayment DECIMAL(8,2),
                        CONSTRAINT PRIMARY KEY (orderID),
                        CONSTRAINT FOREIGN KEY(custID) REFERENCES Customer(custID) ON UPDATE CASCADE ON DELETE CASCADE,
                        CONSTRAINT FOREIGN KEY(empID) REFERENCES Employee(empID) ON UPDATE CASCADE ON DELETE CASCADE
@@ -123,8 +124,13 @@ create table if not exists User(
                                    Password varchar(30) NOT NULL ,
                                    Email varchar(50) unique not null,
                                    constraint primary key (Username)
+<<<<<<< HEAD
 
 );
 
 
 
+=======
+);
+
+>>>>>>> 742d9b4c14b3ca6b53a486165a8ad998a2ebd431
