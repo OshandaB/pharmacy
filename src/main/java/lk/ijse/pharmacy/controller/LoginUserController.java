@@ -11,6 +11,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import lk.ijse.pharmacy.dto.User;
@@ -33,10 +34,10 @@ public class LoginUserController {
     private JFXButton loginBtn;
 
     @FXML
-    private TextField passwordTxt;
+    private TextField userNameTxt;
 
     @FXML
-    private TextField userNameTxt;
+    private PasswordField passwordTxt;
 
     String username;
     String password;
