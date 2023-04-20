@@ -21,7 +21,7 @@ public class AlertController {
         alert.getDialogPane().setPrefSize(300, 150); // Set the size of the alert dialog pane
 //            alert.getDialogPane().setMinSize(300, 150); // Set the minimum size of the alert dialog pane
 //            alert.getDialogPane().setMaxSize(300, 150); // Set the maximum size of the alert dialog pane
-        alert.getDialogPane().setStyle("-fx-background-color: #F8D7DA;"); // Set the background color of the alert dialog pane
+        alert.getDialogPane().setStyle("-fx-background-color: #ffffff;"); // Set the background color of the alert dialog pane
         alert.getDialogPane().setHeaderText(null); // Remove the header text from the alert dialog pane
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -41,7 +41,7 @@ public class AlertController {
         alert.getDialogPane().setPrefSize(300, 150); // Set the size of the alert dialog pane
 //            alert.getDialogPane().setMinSize(300, 150); // Set the minimum size of the alert dialog pane
 //            alert.getDialogPane().setMaxSize(300, 150); // Set the maximum size of the alert dialog pane
-        alert.getDialogPane().setStyle("-fx-background-color: #F8D7DA;"); // Set the background color of the alert dialog pane
+        alert.getDialogPane().setStyle("-fx-background-color: #ffffff;"); // Set the background color of the alert dialog pane
         alert.getDialogPane().setHeaderText(null); // Remove the header text from the alert dialog pane
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -61,7 +61,7 @@ public class AlertController {
         alert.getDialogPane().setPrefSize(300, 150); // Set the size of the alert dialog pane
 //            alert.getDialogPane().setMinSize(300, 150); // Set the minimum size of the alert dialog pane
 //            alert.getDialogPane().setMaxSize(300, 150); // Set the maximum size of the alert dialog pane
-        alert.getDialogPane().setStyle("-fx-background-color: #F8D7DA;"); // Set the background color of the alert dialog pane
+        alert.getDialogPane().setStyle("-fx-background-color: #ffffff;"); // Set the background color of the alert dialog pane
         alert.getDialogPane().setHeaderText(null); // Remove the header text from the alert dialog pane
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
