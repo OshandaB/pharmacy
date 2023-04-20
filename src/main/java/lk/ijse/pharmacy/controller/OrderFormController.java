@@ -397,6 +397,7 @@ public class OrderFormController {
                     AlertController.errormessage("Order Not Placed");
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println(e);
             }
         } else {

@@ -124,14 +124,13 @@ create table if not exists User(
                                    Password varchar(30) NOT NULL ,
                                    Email varchar(50) unique not null,
                                    constraint primary key (Username)
-<<<<<<< HEAD
-);
 
-=======
-<<<<<<< HEAD
-);
-=======
 
 );
->>>>>>> 5e7c916dfe01407dfa6c7b342c0cbf59764de6d4
->>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
+
+
+
+
+
+
+
