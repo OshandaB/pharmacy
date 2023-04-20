@@ -88,10 +88,7 @@ public class EmployeeModel {
         return null;
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 926e903c2bdf9c8e793d4fc9844e1471d2f20c35
     public static List<String> loadIds() throws SQLException, ClassNotFoundException {
         String sql = "SELECT empID FROM employee";
         ResultSet resultSet = CrudUtil.crudUtil(sql);

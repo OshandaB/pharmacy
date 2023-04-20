@@ -2,6 +2,7 @@ package lk.ijse.pharmacy.controller;
 
 import com.jfoenix.controls.JFXButton;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.dto.Item;
 import lk.ijse.pharmacy.dto.PlaceOrder;
 import lk.ijse.pharmacy.model.CustomerModel;
@@ -26,6 +28,11 @@ import lk.ijse.pharmacy.model.OrderModel;
 import lk.ijse.pharmacy.tm.PlaceOrderTM;
 import lk.ijse.pharmacy.util.AlertController;
 import lk.ijse.pharmacy.util.ValidateField;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class OrderFormController {
 
@@ -334,6 +341,8 @@ public class OrderFormController {
 
     @FXML
     void btnplaceorderOnAction(ActionEvent event) {
+
+
         String orderid = lblorderid.getText();
         String custid = cmbcustid.getValue();
         String ordpay = lbltotalpay.getText();
@@ -357,25 +366,48 @@ public class OrderFormController {
                 isPlaced = OrderModel.placeOrder(orderid, custid, ordpay,empid, placeOrderList);
                 if (isPlaced) {
                     AlertController.confirmmessage("Order Placed");
-                    String printcash = txtpaidamount.getText();
-                    String balance = balancelbl.getText();
-                    generateNextOrderId();
-                    cmbcustid.setValue(null);
-                    cmbitemcode.setValue(null);
-                    lblchangingcusname.setText("");
-                    lblchangingitmname.setText("");
-                    lblchangingunitprice.setText("");
-                    lblchangingcategory.setText("");
-                    lblchangingqtyonhands.setText("");
-                    lbltotalpay.setText("0/=");
-                    radiodelivery.setSelected(false);
-                    tblplaceOrder.getItems().clear();
-                    txtpaidamount.setText("");
-                    balancelbl.setText("");
-                    lblmoreneeded.setVisible(false);
-                    txtmoremoney.setText("");
+                    boolean result = AlertController.okconfirmmessage("Do you want the bill ?");
 
-                    btnPlaceOrder.setDisable(true);
+                    if (result) {
+                        String printcash = txtpaidamount.getText();
+                        String balance = balancelbl.getText();
+
+                        Map<String, Object> parameters = new HashMap<>();
+                        parameters.put("param1", printcash);
+                        parameters.put("param2", balance);
+
+                        InputStream resource = this.getClass().getResourceAsStream("/reports/PlaceOrderBill.jrxml");
+                        try {
+                            JasperReport jasperReport = JasperCompileManager.compileReport(resource);
+                            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DBConnection.getInstance().getConnection());
+                            JasperViewer.viewReport(jasperPrint, false);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    try {
+
+                        generateNextOrderId();
+                        cmbcustid.setValue(null);
+                        cmbitemcode.setValue(null);
+                        lblchangingcusname.setText("");
+                        lblchangingitmname.setText("");
+                        lblchangingunitprice.setText("");
+                        lblchangingcategory.setText("");
+                        lblchangingqtyonhands.setText("");
+                        lbltotalpay.setText("0/=");
+                        radiodelivery.setSelected(false);
+                        tblplaceOrder.getItems().clear();
+                        txtpaidamount.setText("");
+                        balancelbl.setText("");
+                        lblmoreneeded.setVisible(false);
+                        txtmoremoney.setText("");
+
+                        btnPlaceOrder.setDisable(true);
+                    }catch (Exception e){
+
+                    }
 
 //                    boolean result = AlertController.okconfirmmessage("Do you want the bill ?");
 //
