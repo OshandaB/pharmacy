@@ -13,8 +13,15 @@ import lk.ijse.pharmacy.model.ItemModel;
 import lk.ijse.pharmacy.tm.ItemTM;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ItemFormController {
+
+    @FXML
+    private DatePicker cmbItemDate;
+
+    @FXML
+    private DatePicker cmbItemmfgDate;
 
     @FXML
     private TableView<ItemTM> mainCOMItem;
@@ -26,19 +33,19 @@ public class ItemFormController {
     private TableColumn<?, ?> tblMedNmae;
 
     @FXML
-    private TableColumn<?, ?> tbltype;
-
-    @FXML
     private TableColumn<?, ?> tblQuantityOnHands;
 
     @FXML
-    private TableColumn<?, ?> tblmfgDate;
+    private TableColumn<?, ?> tblUnitPrice;
 
     @FXML
     private TableColumn<?, ?> tblexpDate;
 
     @FXML
-    private TextField txtsearchItem;
+    private TableColumn<?, ?> tblmfgDate;
+
+    @FXML
+    private TableColumn<?, ?> tbltype;
 
     @FXML
     private TextField txtItemCode;
@@ -47,22 +54,16 @@ public class ItemFormController {
     private TextField txtItemMedName;
 
     @FXML
-    private TextField txtItemType;
-
-    @FXML
-    private TextField txtItemDate;
-
-    @FXML
     private TextField txtItemQOH;
 
     @FXML
-    private TextField txtItemmfgDate;
+    private TextField txtItemType;
 
     @FXML
     private TextField txtItemUnitPrice;
 
     @FXML
-    private TableColumn<?, ?> tblUnitPrice;
+    private TextField txtsearchItem;
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws ClassNotFoundException {
@@ -87,8 +88,8 @@ public class ItemFormController {
         String ItemMedName = txtItemMedName.getText();
         String ItemType = txtItemType.getText();
         String ItemQOH = txtItemQOH.getText();
-        String ItemDate = txtItemDate.getText();
-        String ItemmfgDate = txtItemmfgDate.getText();
+        String ItemDate = String.valueOf(cmbItemDate.getValue());
+        String ItemmfgDate = String.valueOf(cmbItemmfgDate.getValue());
         String ItemUnitPrice = txtItemUnitPrice.getText();
 
         Item itemAll = new Item(ItemCode, ItemMedName,ItemUnitPrice,ItemType,ItemDate,ItemQOH,ItemmfgDate);
@@ -113,8 +114,8 @@ public class ItemFormController {
         String ItemMedName = txtItemMedName.getText();
         String ItemType = txtItemType.getText();
         String ItemQOH = txtItemQOH.getText();
-        String ItemDate = txtItemDate.getText();
-        String ItemmfgDate = txtItemmfgDate.getText();
+        String ItemDate = String.valueOf(cmbItemDate.getValue());
+        String ItemmfgDate = String.valueOf(cmbItemmfgDate.getValue());
         String ItemUnitPrice = txtItemUnitPrice.getText();
 
         Item itemAll = new Item(ItemCode, ItemMedName,ItemUnitPrice, ItemType,ItemDate,ItemQOH,ItemmfgDate);
@@ -152,8 +153,8 @@ public class ItemFormController {
         txtItemUnitPrice.setText(columns.get(2).getCellData(row).toString());
         txtItemType.setText(columns.get(3).getCellData(row).toString());
         txtItemQOH.setText(columns.get(4).getCellData(row).toString());
-        txtItemmfgDate.setText(columns.get(5).getCellData(row).toString());
-        txtItemDate.setText(columns.get(6).getCellData(row).toString());
+        cmbItemmfgDate.setValue(LocalDate.parse(columns.get(5).getCellData(row).toString()));
+        cmbItemDate.setValue(LocalDate.parse(columns.get(6).getCellData(row).toString()));
     }
 
     @FXML
