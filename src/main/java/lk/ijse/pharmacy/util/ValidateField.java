@@ -102,6 +102,12 @@ public class ValidateField {
         Matcher m = p.matcher(custId);
         return m.matches();
     }
+    public static boolean billIdCheck(String custId) {
+        String pattern = "^bill-\\d+$";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(custId);
+        return m.matches();
+    }
 
     public static boolean itemIdCheck(String custId) {
         String pattern = "^itm\\d+$";

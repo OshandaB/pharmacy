@@ -1,6 +1,5 @@
 package lk.ijse.pharmacy.controller;
 
-import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.pharmacy.dto.Item;
 import lk.ijse.pharmacy.model.ItemModel;
 import lk.ijse.pharmacy.tm.ItemTM;
+import lk.ijse.pharmacy.util.AlertController;
+import lk.ijse.pharmacy.util.ValidateField;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -66,22 +67,29 @@ public class ItemFormController {
     private TextField txtsearchItem;
 
     @FXML
+    private Label lblinvalidqty;
+
+    @FXML
+    private Label wrongitemcodeformat;
+
+    @FXML
     void btnDeleteOnAction(ActionEvent event) throws ClassNotFoundException {
 
 
         String ItemCode = txtItemCode.getText();
 
-                try {
-                    boolean isDeleted = ItemModel.delete(ItemCode);
-                    if (isDeleted) {
-                        new Alert(Alert.AlertType.CONFIRMATION,"Item deleted!").show();
-                        onActionGetAllItem();
-                    }
-                } catch (SQLException e) {
-                    new Alert(Alert.AlertType.ERROR, "something went wrong!").show();
-                }
-
+        try {
+            boolean isDeleted = ItemModel.delete(ItemCode);
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Item deleted!").show();
+                onActionGetAllItem();
             }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "something went wrong!").show();
+        }
+
+    }
+
     @FXML
     void btnUpdateOnAction(ActionEvent event) throws ClassNotFoundException {
         String ItemCode = txtItemCode.getText();
@@ -92,48 +100,72 @@ public class ItemFormController {
         String ItemmfgDate = String.valueOf(cmbItemmfgDate.getValue());
         String ItemUnitPrice = txtItemUnitPrice.getText();
 
-        Item itemAll = new Item(ItemCode, ItemMedName,ItemUnitPrice,ItemType,ItemDate,ItemQOH,ItemmfgDate);
+        if (ItemCode.isEmpty() || ItemMedName.isEmpty() || ItemType.isEmpty() || ItemQOH.isEmpty() || ItemUnitPrice.isEmpty() || cmbItemDate.getEditor().getText().isEmpty() || cmbItemmfgDate.getEditor().getText().isEmpty()) {
+            AlertController.errormessage("Please make sure to fill out all the required fields.");
+        } else {
+            if (ValidateField.itemIdCheck(ItemCode)) {
+                if (ValidateField.numberCheck(ItemQOH)) {
+                    Item itemAll = new Item(ItemCode, ItemMedName, ItemUnitPrice, ItemType, ItemDate, ItemQOH, ItemmfgDate);
 
-        try {
-            boolean isUpdated = ItemModel.update(itemAll);
-           // AlertController.animationMesseageCorect("CONFIRMATION","Item updated!");
-            if(isUpdated){
-                new Alert(Alert.AlertType.CONFIRMATION,"Item updated!").show();
-                onActionGetAllItem();
+                    try {
+                        boolean isUpdated = ItemModel.update(itemAll);
+                        // AlertController.animationMesseageCorect("CONFIRMATION","Item updated!");
+                        if (isUpdated) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Item updated!").show();
+                            onActionGetAllItem();
+                        }
+                    } catch (SQLException e) {
+                        new Alert(Alert.AlertType.ERROR, "something went wrong!").show();
+                        // AlertController.animationMesseagewrong("Error","something went wrong!");
+                    }
+                } else {
+                    lblinvalidqty.setVisible(true);
+                }
+            } else {
+                wrongitemcodeformat.setVisible(true);
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "something went wrong!").show();
-           // AlertController.animationMesseagewrong("Error","something went wrong!");
         }
 
     }
 
     @FXML
     void buttonSaveOnACT(ActionEvent event) throws ClassNotFoundException {
+
         String ItemCode = txtItemCode.getText();
         String ItemMedName = txtItemMedName.getText();
         String ItemType = txtItemType.getText();
         String ItemQOH = txtItemQOH.getText();
+        String ItemUnitPrice = txtItemUnitPrice.getText();
         String ItemDate = String.valueOf(cmbItemDate.getValue());
         String ItemmfgDate = String.valueOf(cmbItemmfgDate.getValue());
-        String ItemUnitPrice = txtItemUnitPrice.getText();
 
-        Item itemAll = new Item(ItemCode, ItemMedName,ItemUnitPrice, ItemType,ItemDate,ItemQOH,ItemmfgDate);
+        if (ItemCode.isEmpty() || ItemMedName.isEmpty() || ItemType.isEmpty() || ItemQOH.isEmpty() || ItemUnitPrice.isEmpty() || cmbItemDate.getEditor().getText().isEmpty() || cmbItemmfgDate.getEditor().getText().isEmpty()) {
+            AlertController.errormessage("Please make sure to fill out all the required fields.");
+        } else {
+            if (ValidateField.itemIdCheck(ItemCode)) {
+                if (ValidateField.numberCheck(ItemQOH)) {
+                    Item itemAll = new Item(ItemCode, ItemMedName, ItemUnitPrice, ItemType, ItemDate, ItemQOH, ItemmfgDate);
 
-        try {
+                    try {
 //            boolean isSaved = ItemModel.save(code, description, unitPrice, qtyOnHand);
-            boolean isSaved = ItemModel.save(itemAll);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION,"Item Added!").show();
-                onActionGetAllItem();
+                        boolean isSaved = ItemModel.save(itemAll);
+                        if (isSaved) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Item Added!").show();
+                            onActionGetAllItem();
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        new Alert(Alert.AlertType.ERROR, "something went wrong!").show();
+                        // AlertController.animationMesseagewrong("Error","something went wrong!");
+
+                    }
+                } else {
+                    lblinvalidqty.setVisible(true);
+                }
+            } else {
+                wrongitemcodeformat.setVisible(true);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
-            new Alert(Alert.AlertType.ERROR, "something went wrong!").show();
-           // AlertController.animationMesseagewrong("Error","something went wrong!");
-
         }
-
     }
 
     @FXML
@@ -143,10 +175,10 @@ public class ItemFormController {
 
     @FXML
     void itemOnMouse(MouseEvent event) {
-        TablePosition pos=mainCOMItem.getSelectionModel().getSelectedCells().get(0);
-        int row=pos.getRow();
+        TablePosition pos = mainCOMItem.getSelectionModel().getSelectedCells().get(0);
+        int row = pos.getRow();
 
-        ObservableList<TableColumn<ItemTM,?>> columns=mainCOMItem.getColumns();
+        ObservableList<TableColumn<ItemTM, ?>> columns = mainCOMItem.getColumns();
 
         txtItemCode.setText(columns.get(0).getCellData(row).toString());
         txtItemMedName.setText(columns.get(1).getCellData(row).toString());
@@ -161,11 +193,14 @@ public class ItemFormController {
     void searchItemOnKey(KeyEvent event) {
 
     }
+
     @FXML
     void initialize() throws ClassNotFoundException {
         onActionGetAllItem();
         setCellValuefactory();
 
+        wrongitemcodeformat.setVisible(false);
+        lblinvalidqty.setVisible(false);
     }
 
     void onActionGetAllItem() throws ClassNotFoundException {
@@ -181,7 +216,7 @@ public class ItemFormController {
 
     }
 
-    void setCellValuefactory(){
+    void setCellValuefactory() {
         tblMedId.setCellValueFactory(new PropertyValueFactory<>("ItemCode"));
         tblMedNmae.setCellValueFactory(new PropertyValueFactory<>("ItemMedName"));
         tbltype.setCellValueFactory(new PropertyValueFactory<>("ItemType"));
@@ -191,4 +226,11 @@ public class ItemFormController {
         tblUnitPrice.setCellValueFactory(new PropertyValueFactory<>("ItemUnitPrice"));
     }
 
+    public void txtItemCodeOnMouseClicked(MouseEvent mouseEvent) {
+        wrongitemcodeformat.setVisible(false);
+    }
+
+    public void txtItemQOHOnMouseClicked(MouseEvent mouseEvent) {
+        lblinvalidqty.setVisible(false);
+    }
 }

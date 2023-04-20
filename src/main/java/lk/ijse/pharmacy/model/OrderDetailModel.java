@@ -1,5 +1,9 @@
 package lk.ijse.pharmacy.model;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 926e903c2bdf9c8e793d4fc9844e1471d2f20c35
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;

@@ -127,6 +127,18 @@ create table if not exists User(
 =======
                                    Email varchar(50) unique not null,
                                    constraint primary key (Username)
+<<<<<<< HEAD
+
+
+);
+
+
+
+
+
+
+
+=======
 >>>>>>> 203c63f50079ee64061729991cf2fd4f8cefc1b4
 
 );
@@ -137,3 +149,4 @@ create table if not exists User(
 
 =======
 >>>>>>> 203c63f50079ee64061729991cf2fd4f8cefc1b4
+>>>>>>> 926e903c2bdf9c8e793d4fc9844e1471d2f20c35
