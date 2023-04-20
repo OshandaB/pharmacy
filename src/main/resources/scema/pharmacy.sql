@@ -122,23 +122,10 @@ CREATE TABLE Supply(
 create table if not exists User(
                                    Username varchar(30),
                                    Password varchar(30) NOT NULL ,
-<<<<<<< HEAD
                                    Email varchar(50) unique not null
-=======
-                                   Email varchar(50) unique not null,
-                                   constraint primary key (Username)
-<<<<<<< HEAD
->>>>>>> e8e90c0f03ba2092c25fc6410a44f00ec6dc337c
 
 );
 
 
 
-<<<<<<< HEAD
 
-=======
-=======
-);
-
->>>>>>> 742d9b4c14b3ca6b53a486165a8ad998a2ebd431
->>>>>>> e8e90c0f03ba2092c25fc6410a44f00ec6dc337c

@@ -30,8 +30,8 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <TextField fx:id="userNameTxt" layoutX="136.0" layoutY="135.0" prefHeight="25.0" prefWidth="163.0" />
-            <TextField fx:id="passwordTxt" layoutX="135.0" layoutY="200.0" prefHeight="25.0" prefWidth="163.0" />
+            <TextField fx:id="userNameTxt" layoutX="136.0" layoutY="135.0" onMouseClicked="#txtUserNameOnMouseClicked" prefHeight="25.0" prefWidth="163.0" />
+            <TextField fx:id="passwordTxt" layoutX="135.0" layoutY="200.0" onMouseClicked="#txPasswordOnMouseClicked" prefHeight="25.0" prefWidth="163.0" />
             <Label layoutX="43.0" layoutY="131.0" text="Username">
                <font>
                   <Font name="System Bold" size="18.0" />

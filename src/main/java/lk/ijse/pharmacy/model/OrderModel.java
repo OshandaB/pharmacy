@@ -7,13 +7,9 @@ import lk.ijse.pharmacy.util.CrudUtil;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
-
 import java.util.ArrayList;
 
->>>>>>> 464f27ab834edd40332ce6e3601e54d73fc53245
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
