@@ -1,6 +1,9 @@
 package lk.ijse.pharmacy.model;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
 import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.dto.PlaceOrder;
 import lk.ijse.pharmacy.util.CrudUtil;
@@ -8,6 +11,9 @@ import lk.ijse.pharmacy.util.CrudUtil;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.util.ArrayList;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -76,6 +82,10 @@ public class OrderModel {
         );
     }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
     public static int getTotalSales() throws SQLException, ClassNotFoundException {
         String sql="SELECT count(orderID) FROM orders WHERE date =curdate()";
         ResultSet resultSet= CrudUtil.crudUtil(sql);
@@ -84,6 +94,20 @@ public class OrderModel {
             count=resultSet.getInt(1);
         }
         return count;
+    }
+
+    public static List<String> LoadOrderIds() throws SQLException, ClassNotFoundException {
+
+        String sql = "SELECT orderID FROM orders";
+        List<String> allItemData = new ArrayList<>();
+
+        ResultSet resultSet = CrudUtil.crudUtil(sql);
+        while (resultSet.next()) {
+            allItemData.add(resultSet.getString(1));
+
+
+        }
+        return allItemData;
     }
 
 //    public static XYChart.Series lineChartData() throws SQLException, ClassNotFoundException {
@@ -96,5 +120,8 @@ public class OrderModel {
 //        return series;
 //
 //    }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
 }
