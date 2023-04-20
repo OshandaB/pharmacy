@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -30,8 +31,12 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
+<<<<<<< HEAD
+            <TextField fx:id="userNameTxt" layoutX="136.0" layoutY="135.0" onMouseClicked="#txtUserNameOnMouseClicked" prefHeight="25.0" prefWidth="163.0" />
+            <TextField fx:id="passwordTxt" layoutX="135.0" layoutY="200.0" onMouseClicked="#txPasswordOnMouseClicked" prefHeight="25.0" prefWidth="163.0" />
+=======
             <TextField fx:id="userNameTxt" layoutX="136.0" layoutY="135.0" prefHeight="25.0" prefWidth="163.0" />
-            <TextField fx:id="passwordTxt" layoutX="135.0" layoutY="200.0" prefHeight="25.0" prefWidth="163.0" />
+>>>>>>> 203c63f50079ee64061729991cf2fd4f8cefc1b4
             <Label layoutX="43.0" layoutY="131.0" text="Username">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -47,6 +52,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Hyperlink>
+            <PasswordField fx:id="passwordTxt" layoutX="139.0" layoutY="205.0" prefHeight="25.0" prefWidth="163.0" />
          </children>
       </Pane>
 <!--      <JFXTextField fx:id="txtUser" alignment="CENTER" focusColor="BLACK" layoutX="686.0" layoutY="231.0" prefHeight="31.0" prefWidth="290.0" promptText="username" />-->

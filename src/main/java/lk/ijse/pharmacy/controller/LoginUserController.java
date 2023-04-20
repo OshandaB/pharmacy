@@ -11,7 +11,9 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import lk.ijse.pharmacy.dto.User;
 import lk.ijse.pharmacy.model.UserModel;
@@ -33,10 +35,10 @@ public class LoginUserController {
     private JFXButton loginBtn;
 
     @FXML
-    private TextField passwordTxt;
+    private TextField userNameTxt;
 
     @FXML
-    private TextField userNameTxt;
+    private PasswordField passwordTxt;
 
     String username;
     String password;
@@ -73,16 +75,15 @@ public class LoginUserController {
             }));
             timeline.play();
         }else if (userNameTxt.getText().isEmpty() && passwordTxt.getText().isEmpty()) {
-            AlertController.errormessage("Username field and Password field can't be empty");
             passwordTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
             userNameTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+            AlertController.errormessage("Username field and Password field can't be empty");
 
 
         }else if (!userNameTxt.getText().equals(userr) && !passwordTxt.getText().equals(password)) {
-            AlertController.errormessage("Username or password is incorrect.please check your details again!!");
-            userNameTxt.setStyle("-fx-border-color: #dfa47e; -fx-border-width: 3 3 3 3;");
+            userNameTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
             passwordTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
-
+            AlertController.errormessage("Username or password is incorrect.please check your details again!!");
 
         }
 
@@ -91,6 +92,16 @@ public class LoginUserController {
     @FXML
     void initialize() {
 
+    }
+
+    @FXML
+    void txPasswordOnMouseClicked(MouseEvent event) {
+        passwordTxt.setStyle("-fx-border-color: transparent");
+    }
+
+    @FXML
+    void txtUserNameOnMouseClicked(MouseEvent event) {
+        userNameTxt.setStyle("-fx-border-color: transparent");
     }
 
 }

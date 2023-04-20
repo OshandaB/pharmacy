@@ -84,7 +84,7 @@ CREATE TABLE Medicine(
 CREATE TABLE orderDetail(
                             medID VARCHAR(10) ,
                             orderID VARCHAR(10) ,
-                            qtyOnHand INT(10),
+                            qty INT(10),
                             CONSTRAINT FOREIGN KEY(medID) REFERENCES Medicine(medID),
                             CONSTRAINT FOREIGN KEY(orderID) REFERENCES Orders(orderID)
                                 ON UPDATE CASCADE ON DELETE CASCADE
@@ -122,8 +122,12 @@ CREATE TABLE Supply(
 create table if not exists User(
                                    Username varchar(30),
                                    Password varchar(30) NOT NULL ,
+<<<<<<< HEAD
+                                   Email varchar(50) unique not null
+=======
                                    Email varchar(50) unique not null,
                                    constraint primary key (Username)
+<<<<<<< HEAD
 
 
 );
@@ -134,3 +138,15 @@ create table if not exists User(
 
 
 
+=======
+>>>>>>> 203c63f50079ee64061729991cf2fd4f8cefc1b4
+
+);
+
+
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 203c63f50079ee64061729991cf2fd4f8cefc1b4
+>>>>>>> 926e903c2bdf9c8e793d4fc9844e1471d2f20c35
