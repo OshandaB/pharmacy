@@ -10,10 +10,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.pharmacy.dto.User;
 import lk.ijse.pharmacy.model.UserModel;
 import lk.ijse.pharmacy.util.AlertController;
 import lk.ijse.pharmacy.util.Navigation;
+import lk.ijse.pharmacy.util.ValidateField;
 
 public class SignUPController {
 
@@ -49,13 +51,23 @@ public class SignUPController {
 
     @FXML
     void signBtnOnAction(ActionEvent event) {
-         if(emailTxt.getText().isEmpty()|userNameTxt.getText().isEmpty()|passwordTxt.getText().isEmpty()|
-                confirmPassword.getText().isEmpty()){
-             userNameTxt.setStyle("-fx-border-color: #dfa47e; -fx-border-width: 3 3 3 3;");
-             passwordTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
-             confirmPassword.setStyle("-fx-border-color: #dfa47e; -fx-border-width: 3 3 3 3;");
-             emailTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
-            AlertController.errormessage("please fill all empty fields before signup for a account");
+         if(userNameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty() ||
+                confirmPassword.getText().isEmpty() || !ValidateField.emailCheck(emailTxt.getText())){
+
+             if(!ValidateField.emailCheck(emailTxt.getText())){
+                 emailTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+                 AlertController.errormessage("Invalid Emaill");
+             }else {
+                 if(userNameTxt.getText().isEmpty()){
+                     userNameTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+                 }else if(passwordTxt.getText().isEmpty()){
+                     passwordTxt.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+                 }else if(confirmPassword.getText().isEmpty()){
+                     confirmPassword.setStyle("-fx-border-color: red; -fx-border-width: 3 3 3 3;");
+                 }
+                 //AlertController.errormessage("please fill all empty fields before signup for a account");
+
+             }
 
         }else{
              String username = userNameTxt.getText();
@@ -69,8 +81,7 @@ public class SignUPController {
                  try {
                      isSaved = UserModel.save(user);
                      if (isSaved) {
-                         System.out.println("saved");
-                         signUPBtn.getScene().getWindow().hide();
+                         Navigation.switchNavigation("LoginUser.fxml",event);
                          emailTxt.setText("");
                          userNameTxt.setText("");
                          passwordTxt.setText("");
@@ -82,6 +93,8 @@ public class SignUPController {
                  }
 
 
+             }else {
+                 AlertController.errormessage("password not same");
              }
 
         }
@@ -91,6 +104,26 @@ public class SignUPController {
     void initialize() {
 
 
+    }
+
+    @FXML
+    void txtConPasswordOnMouseClicked(MouseEvent event) {
+        confirmPassword.setStyle("-fx-border-color: transparent");
+    }
+
+    @FXML
+    void txtEmailOnMouseClicke(MouseEvent event) {
+        emailTxt.setStyle("-fx-border-color: transparent");
+    }
+
+    @FXML
+    void txtPasswordOnMouseCllicked(MouseEvent event) {
+        passwordTxt.setStyle("-fx-border-color: transparent");
+    }
+
+    @FXML
+    void txtUserNameOnMouseClicked(MouseEvent event) {
+        userNameTxt.setStyle("-fx-border-color: transparent");
     }
 
 }
