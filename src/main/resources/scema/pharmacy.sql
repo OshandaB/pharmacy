@@ -84,7 +84,7 @@ CREATE TABLE Medicine(
 CREATE TABLE orderDetail(
                             medID VARCHAR(10) ,
                             orderID VARCHAR(10) ,
-                            qtyOnHand INT(10),
+                            qty INT(10),
                             CONSTRAINT FOREIGN KEY(medID) REFERENCES Medicine(medID),
                             CONSTRAINT FOREIGN KEY(orderID) REFERENCES Orders(orderID)
                                 ON UPDATE CASCADE ON DELETE CASCADE

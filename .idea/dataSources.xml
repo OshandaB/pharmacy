@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="c9e89028-23fd-4df6-bc2a-80b2616548e1">
-=======
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="752b2cdc-7006-4cdd-a811-901f32c372de">
-=======
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="a045ff94-ea14-4567-9de4-c761063f4883">
-=======
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="0b244615-2b20-462f-b2ab-4dcfc6e8c437">
-=======
-    <data-source source="LOCAL" name="pharmacy@localhost" uuid="01a0485d-9164-4c39-bf8f-17ce7b08a1be">
->>>>>>> 5e7c916dfe01407dfa6c7b342c0cbf59764de6d4
->>>>>>> 43d121f946554347f0fe0559d56b8d9b79ae7651
->>>>>>> ecd191fa4d4bcbb481a87af93c7bd21f31bfc2ab
->>>>>>> 6b14bdf565d88d6377d4710a53ae193ca34c32a8
+    <data-source source="LOCAL" name="pharmacy@localhost" uuid="c21c7e76-4fb6-4e74-9897-f5db59ee13a9">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
